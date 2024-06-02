@@ -24,3 +24,7 @@ dist-ssr
 *.sln
 *.sw?
 .venv
+
+# Customize
+test-x86_64-pc-windows-msvc.spec
+/build
