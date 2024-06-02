@@ -1,13 +1,23 @@
-import React, { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import { invoke } from "@tauri-apps/api/tauri";
-import "./App.css";
+    import React, { useEffect, useState } from "react";
+    import { Command } from '@tauri-apps/api/shell';
+    import reactLogo from "./assets/react.svg";
+    import { invoke } from "@tauri-apps/api/tauri";
+    import "./App.css";
 
-import { MainFunctionSwitch } from "@MainFunctionSwitch";
+    import { MainFunctionSwitch } from "@MainFunctionSwitch";
+
 
 function App() {
     const [greetMsg, setGreetMsg] = useState("");
     const [name, setName] = useState("");
+
+    useEffect(() => {
+        (async () => {
+            const command = Command.sidecar("bin/test")
+            const output = await command.execute();
+            setGreetMsg(output.stdout);
+        })();
+    }, [])
 
     async function greet() {
         // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command

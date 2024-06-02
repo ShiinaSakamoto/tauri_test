@@ -4,6 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "setup-python": "install.bat",
+    "build-python": "pyinstaller -F src-python/test.py --distpath src-tauri/bin --clean -n test-x86_64-pc-windows-msvc",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",

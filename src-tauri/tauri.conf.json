@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "npm run dev",
-    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run build-python && npm run dev",
+    "beforeBuildCommand": "npm run build-python && npm run build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist"
   },
@@ -14,7 +14,13 @@
       "all": false,
       "shell": {
         "all": false,
-        "open": true
+        "open": true,
+        "sidecar": true,
+        "scope": [
+          {
+            "name": "bin/test", "sidecar": true,"args": true
+          }
+        ]
       }
     },
     "windows": [
@@ -37,6 +43,9 @@
         "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
+      ],
+      "externalBin": [
+        "bin/test"
       ]
     }
   }
