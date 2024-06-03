@@ -1,22 +1,41 @@
-# script.py
 import sys
 import json
 import datetime
+import threading
 import time
 
-def main():
-    # # 標準入力からデータを受け取る
-    # input_data = sys.stdin.read()
 
-    # # ここで任意の処理を行う（例：JSONデータを受け取って処理）
-    # # received_data = json.loads(input_data)
-    # received_data = input_data
-    # response = {
-    #     "message": f"Hello, {received_data} from Python!"
-    #     # "message": f"Hello, {received_data.get('name', 'world')}!"
-    # }
+def process_input():
+    while True:
+        input_data = sys.stdin.readline().strip()
+        if not input_data:
+            break
+
+        with open('process.log', 'a') as f:
+            f.write(f"input_data: {input_data}\n")
+
+        if input_data:
+            response = f"Hello, {input_data} from Python!"
+            print(response, flush=True)
+
+
+
+def main():
+    # 標準入力からデータを受け取る
+    print("Init", flush=True)
+
+
+    # input_data = sys.stdin.readline().strip()
+    # with open('process.log', 'a') as f:
+    #     f.write(f"input_data: {input_data}\n")
+
+    # if input_data:
+    #     response = f"Hello, {input_data} from Python!"
+    #     print(response, flush=True)
+
     received_data = "test"
     response = "Hello, test from Python!"
+
     with open('process.log', 'a') as f:
         f.write(f"Received data: {received_data}\n")
         f.write(f"Response: {response}\n")
@@ -28,7 +47,9 @@ def main():
 
 if __name__ == "__main__":
     try:
-        main()
+        input_thread = threading.Thread(target=process_input)
+        input_thread.start()
+        # main()
     except Exception:
         import traceback
         with open('error.log', 'a') as f:
