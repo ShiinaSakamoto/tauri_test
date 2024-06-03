@@ -1,7 +1,42 @@
-.logo.vite:hover {
-  filter: drop-shadow(0 0 2em #747bff);
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2E2F32;
 }
 
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafb);
+.message-form {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.message-textarea-container {
+    margin-right: 1rem;
+    padding: 0.8rem;
+    background-color: #323336;
+    border: 0.1rem solid #5B5C5F;
+}
+
+.message-textarea {
+    resize: none;
+    width: 20rem;
+    height: 4rem;
+    font-size: 1.6rem;
+}
+
+.submit-button {
+    border: 0.1rem solid #5B5C5F;
+    padding: 0 1rem;
+    font-size: 1.2rem;
+}
+
+.message-container {
+    display: flex;
+    font-size: 1.4rem;
+}
+
+.message-container-label {
+    margin-right: 1rem;
 }
