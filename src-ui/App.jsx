@@ -14,8 +14,13 @@ function App() {
     useEffect(() => {
         (async () => {
             const command = Command.sidecar("bin/test")
-            const output = await command.execute();
-            setGreetMsg(output.stdout);
+            command.on('error', error => console.error(`error: "${error}"`));
+            command.stdout.on('data', (line) => {
+                setGreetMsg(line);
+            });
+            command.stderr.on('data', line => console.log("stderr:", line));
+            await command.execute();
+            // setGreetMsg(output.stdout);
         })();
     }, [])
 
