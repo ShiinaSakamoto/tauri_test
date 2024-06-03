@@ -1,6 +1,8 @@
 # script.py
 import sys
 import json
+import datetime
+import time
 
 def main():
     # # 標準入力からデータを受け取る
@@ -20,8 +22,9 @@ def main():
         f.write(f"Response: {response}\n")
 
     # 標準出力に結果を出力
-    print(response)
-
+    for i in range(10):
+        print(str(i), flush=True)
+        time.sleep(1)
 
 if __name__ == "__main__":
     try:
