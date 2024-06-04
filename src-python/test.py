@@ -5,29 +5,19 @@ import time
 
 
 def main():
-    # 標準入力からデータを受け取る
-    print("Init", flush=True)
+    received_data = "Init"
+    response = "Hello, Initialization from Python!"
+    print(response, flush=True)
 
-    input_data = sys.stdin.readline().strip()
+    received_data = sys.stdin.readline().strip()
 
     with open('process.log', 'a') as f:
-        f.write(f"input_data: {input_data}\n")
+        f.write(f"received_data: {received_data}\n")
 
-    if input_data:
-        response = f"Hello, {input_data} from Python!"
+    if received_data:
+        response = f"{received_data} from Python!"
         print(response, flush=True)
 
-
-    # input_data = sys.stdin.readline().strip()
-    # with open('process.log', 'a') as f:
-    #     f.write(f"input_data: {input_data}\n")
-
-    # if input_data:
-    #     response = f"Hello, {input_data} from Python!"
-    #     print(response, flush=True)
-
-    # received_data = "test"
-    # response = "Hello, test from Python!"
 
     # with open('process.log', 'a') as f:
     #     f.write(f"Received data: {received_data}\n")

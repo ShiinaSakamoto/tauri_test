@@ -15,24 +15,16 @@ function App() {
     useEffect(() => {
         (async () => {
             const command = Command.sidecar('bin/test');
-
             command.on('error', error => console.error(`error: "${error}"`));
             command.stdout.on('data', (line) => {
                 console.log('stdout:', line);
                 setMessage(line);
             });
             command.stderr.on('data', line => console.error('stderr:', line));
-
-            console.log("1");
             const child = await command.spawn();
-
             childRef.current = child;
-            // setMessage(output.stdout);
-            console.log("2");
-
-            await child.write('Test data from React');
-            console.log("3");
         })();
+
     }, []);
 
     const asyncSendMessage = async (value = input_value) => {
