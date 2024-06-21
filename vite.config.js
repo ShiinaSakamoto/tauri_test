@@ -24,6 +24,7 @@ export default defineConfig(async () => ({
     resolve: {
         alias: {
             "@MainFunctionSwitch": path.resolve(__dirname, "src-ui/windows/main_window/main_function_switch/MainFunctionSwitch.jsx"),
+            "@store": path.resolve(__dirname, "src-ui/store.js"),
         },
     },
 

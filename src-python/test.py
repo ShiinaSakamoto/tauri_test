@@ -1,34 +1,37 @@
-# script.py
 import sys
 import json
 import datetime
 import time
 
+
 def main():
-    # # 標準入力からデータを受け取る
-    # input_data = sys.stdin.read()
+    received_data = "Init"
+    response = "Hello, Initialization from Python!"
+    print(response, flush=True)
 
-    # # ここで任意の処理を行う（例：JSONデータを受け取って処理）
-    # # received_data = json.loads(input_data)
-    # received_data = input_data
-    # response = {
-    #     "message": f"Hello, {received_data} from Python!"
-    #     # "message": f"Hello, {received_data.get('name', 'world')}!"
-    # }
-    received_data = "test"
-    response = "Hello, test from Python!"
+    received_data = sys.stdin.readline().strip()
+
     with open('process.log', 'a') as f:
-        f.write(f"Received data: {received_data}\n")
-        f.write(f"Response: {response}\n")
+        f.write(f"received_data: {received_data}\n")
 
-    # 標準出力に結果を出力
-    for i in range(10):
-        print(str(i), flush=True)
-        time.sleep(1)
+    if received_data:
+        response = f"{received_data} from Python!"
+        print(response, flush=True)
+
+
+    # with open('process.log', 'a') as f:
+    #     f.write(f"Received data: {received_data}\n")
+    #     f.write(f"Response: {response}\n")
+
+    # # 標準出力に結果を出力
+    # for i in range(10):
+    #     print(str(i), flush=True)
+    #     time.sleep(1)
 
 if __name__ == "__main__":
     try:
-        main()
+        while True:
+            main()
     except Exception:
         import traceback
         with open('error.log', 'a') as f:
