@@ -23,8 +23,10 @@ export default defineConfig(async () => ({
 
     resolve: {
         alias: {
+            "@color_variables": path.resolve(__dirname, "src-ui/color_variables.css"),
             "@store": path.resolve(__dirname, "src-ui/store.js"),
             "@logic": path.resolve(__dirname, "src-ui/logic.js"),
+            "@images": path.resolve(__dirname, "src-ui/assets"),
         },
     },
 
