@@ -1,4 +1,10 @@
 :root {
     font-size: 62.5%;
     color: #F2F2F2;
+    font-family: "Yu Gothic UI";
+}
+
+/* SVG内のすべての要素にfillを適用 (colorの調整をcssでするため) */
+svg {
+    fill: currentColor;
 }

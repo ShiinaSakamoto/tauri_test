@@ -1,0 +1,35 @@
+@import "@color_variables";
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.switch_container {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.4rem;
+    background-color: var(--dark_825_color);
+}
+
+.switch_label {
+    font-size: 1.6rem;
+}
+
+.switch_box {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.switch_image {
+    width: 1.8rem;
+    color: white;
+}
+
+.switch_indicator {
+    width: 0.2rem;
+    height: 100%;
+    border-radius: 0.1rem;
+    background-color: var(--primary_300_color)
+}
