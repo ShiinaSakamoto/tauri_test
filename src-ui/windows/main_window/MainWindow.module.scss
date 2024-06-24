@@ -1,3 +1,5 @@
+@import "@color_variables";
+
 .container {
     width: 100%;
     height: 100%;
@@ -7,13 +9,18 @@
 }
 
 .sidebar_section {
+    min-width: 23rem;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    background-color: var(--dark_850_color);
 }
 
 .main_section {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    padding: 0 1.6rem 1rem 1.6rem;
 }
