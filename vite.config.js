@@ -20,6 +20,7 @@ export default defineConfig(async () => ({
             ignored: ["**/src-tauri/**"],
         },
     },
+    // assetsInclude: ["**/*.yml"],
 
 
     resolve: {

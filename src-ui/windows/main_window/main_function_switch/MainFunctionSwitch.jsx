@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import styles from "./MainFunctionSwitch.module.scss";
 import TranslationSvg from "@images/translation.svg?react";
 import MicSvg from "@images/mic.svg?react";
@@ -5,9 +7,10 @@ import HeadphonesSvg from "@images/headphones.svg?react";
 import ForegroundSvg from "@images/foreground.svg?react";
 
 export const MainFunctionSwitch = () => {
+    const { t } = useTranslation();
     return (
         <div className={styles["container"]}>
-            <SwitchContainer switch_label="Translation"image_component={
+            <SwitchContainer switch_label={t("main_window.translation")} image_component={
                 <TranslationSvg />
             }/>
             <SwitchContainer switch_label="Voice2Chatbox" image_component={
