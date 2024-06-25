@@ -1,4 +1,4 @@
-// import styles from "./MainFunctionSwitch.module.scss";
+import styles from "./LogBox.module.scss";
 import { useAtomValue } from "jotai";
 
 
@@ -9,7 +9,7 @@ export const LogBox = () => {
     // console.log(sent_message_list);
     // sent_message_list.map(sent_message => console.log(sent_message));
     return (
-        <div>
+        <div className={styles["container"]}>
             <p>Log Box</p>
             {sent_message_list.map(sent_message => {
                 return <p key={crypto.randomUUID()}>{sent_message}</p>;

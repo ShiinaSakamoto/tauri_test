@@ -20,8 +20,10 @@ export const MainWindow = () => {
             </div>
             <div className={styles["main_section"]}>
                 <TopBar />
-                <LogBox />
-                <MessageBox />
+                <div className={styles["message_container"]}>
+                    <LogBox />
+                    <MessageBox />
+                </div>
             </div>
         </div>
     )
