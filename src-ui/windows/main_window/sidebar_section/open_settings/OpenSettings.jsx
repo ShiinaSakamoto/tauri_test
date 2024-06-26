@@ -5,5 +5,5 @@ export const OpenSettings = () => {
         <div>
             <p>Settings Button</p>
         </div>
-    )
+    );
 }

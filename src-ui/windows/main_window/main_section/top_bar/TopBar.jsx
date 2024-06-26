@@ -7,5 +7,5 @@ export const TopBar = () => {
             <p>Overlay(VR)</p>
             <p>Help & Info</p>
         </div>
-    )
+    );
 }

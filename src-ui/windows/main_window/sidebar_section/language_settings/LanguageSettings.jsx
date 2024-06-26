@@ -10,5 +10,5 @@ export const LanguageSettings = () => {
             <p>Target Language</p>
             <p>Translator:</p>
         </div>
-    )
+    );
 }

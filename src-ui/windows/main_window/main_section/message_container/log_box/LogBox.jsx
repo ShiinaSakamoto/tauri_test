@@ -15,5 +15,5 @@ export const LogBox = () => {
                 return <p key={crypto.randomUUID()}>{sent_message}</p>;
             })}
         </div>
-    )
+    );
 }

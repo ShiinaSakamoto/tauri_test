@@ -5,5 +5,5 @@ export const Logo = () => {
         <div className={styles["logo_container"]}>
             <img src={vrct_logo} className={styles["logo"]} alt="VRCT logo" />
         </div>
-    )
+    );
 }

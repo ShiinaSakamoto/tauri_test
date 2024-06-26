@@ -1,10 +1,10 @@
 import { useState } from "react";
-import styles from "./MessageBox.module.scss";
+import styles from "./MessageInputBox.module.scss";
 import { asyncSendMessage } from "@logic";
 import SendMessageSvg from "@images/send_message.svg?react";
 import { useSentMessageList } from "@store";
 
-export const MessageBox = () => {
+export const MessageInputBox = () => {
     const [inputValue, setInputValue] = useState("");
     const { updateSentMessageList } = useSentMessageList();
 
