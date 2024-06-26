@@ -1,3 +1,5 @@
+import { useResizable } from "react-resizable-layout";
+
 import styles from "./MainWindow.module.scss";
 
 import { Logo } from "./logo/Logo";
@@ -10,6 +12,13 @@ import { LogBox } from "./log_box/LogBox";
 import { MessageBox } from "./message_box/MessageBox";
 
 export const MainWindow = () => {
+    const { isDragging, position, separatorProps } = useResizable({
+        axis: "y",
+        initial: 150,
+        min: 50,
+        reverse: true
+    });
+
     return (
         <div className={styles["container"]}>
             <div className={styles["sidebar_section"]}>
@@ -22,9 +31,43 @@ export const MainWindow = () => {
                 <TopBar />
                 <div className={styles["message_container"]}>
                     <LogBox />
-                    <MessageBox />
+                    <Separator
+                        dir={"horizontal"}
+                        isDragging={isDragging}
+                        {...separatorProps}
+                    />
+                    <div className={styles["message_box_wrapper"]} style={ { height: `${position / 10 }rem` } }>
+                        <MessageBox />
+                    </div>
                 </div>
             </div>
         </div>
     )
 }
+
+const Separator = ({ id, dir, isDragging, ...props }) => {
+    // const [isFocused, setIsFocused] = useState(false)
+    // console.log(isDragging);
+    console.log(props);
+
+    return (
+      <div
+        // id={id}
+        // data-testid={id}
+        tabIndex={0}
+        // className={cn(
+        //   'sample-drag-bar',
+        //   dir === 'horizontal' && 'sample-drag-bar--horizontal',
+        //   (isDragging || isFocused) && 'sample-drag-bar--dragging'
+        // )}
+        // onFocus={() => setIsFocused(true)}
+        // onBlur={() => setIsFocused(false)}
+        className={styles["separator"]}
+        {...props}
+      />
+    )
+
+
+    // console.log(separatorProps);
+    // return <div className={styles["separator"]} {...separatorProps }></div>;
+};

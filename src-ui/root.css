@@ -4,6 +4,15 @@
     font-family: "Yu Gothic UI";
 }
 
+html, body {
+    height: 100%;
+}
+
+
+#root {
+    height: 100%;
+}
+
 /* SVG内のすべての要素にfillを適用 (colorの調整をcssでするため) */
 svg {
     fill: currentColor;
