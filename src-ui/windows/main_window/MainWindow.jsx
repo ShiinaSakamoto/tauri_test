@@ -48,23 +48,22 @@ export const MainWindow = () => {
 const Separator = ({ id, dir, isDragging, ...props }) => {
     // const [isFocused, setIsFocused] = useState(false)
     // console.log(isDragging);
-    console.log(props);
 
     return (
-      <div
-        // id={id}
-        // data-testid={id}
-        tabIndex={0}
-        // className={cn(
-        //   'sample-drag-bar',
-        //   dir === 'horizontal' && 'sample-drag-bar--horizontal',
-        //   (isDragging || isFocused) && 'sample-drag-bar--dragging'
-        // )}
-        // onFocus={() => setIsFocused(true)}
-        // onBlur={() => setIsFocused(false)}
-        className={styles["separator"]}
-        {...props}
-      />
+        <div
+            // id={id}
+            // data-testid={id}
+            tabIndex={0}
+            // className={cn(
+            //   'sample-drag-bar',
+            //   dir === 'horizontal' && 'sample-drag-bar--horizontal',
+            //   (isDragging || isFocused) && 'sample-drag-bar--dragging'
+            // )}
+            // onFocus={() => setIsFocused(true)}
+            // onBlur={() => setIsFocused(false)}
+            className={styles["separator"]}
+            {...props}
+        />
     )
 
 
