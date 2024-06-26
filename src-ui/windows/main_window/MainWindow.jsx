@@ -15,7 +15,7 @@ export const MainWindow = () => {
     const { isDragging, position, separatorProps } = useResizable({
         axis: "y",
         initial: 150,
-        min: 50,
+        min: 52,
         reverse: true
     });
 
@@ -36,7 +36,7 @@ export const MainWindow = () => {
                         isDragging={isDragging}
                         {...separatorProps}
                     />
-                    <div className={styles["message_box_wrapper"]} style={ { height: `${position / 10 }rem` } }>
+                    <div className={styles["message_box_wrapper"]} style={ { height: `${(position / 10) - 1.5 }rem` } }>
                         <MessageBox />
                     </div>
                 </div>
