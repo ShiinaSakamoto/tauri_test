@@ -1,9 +1,14 @@
-.logo_container {
-    text-align: center;
-    padding-top: 1rem;
-    padding-bottom: 0.6rem;
+@import "@css_variables";
+
+.container {
+    height: var(--main_window_topbar_height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .logo {
     width: 12rem;
-    height: 100%;
+    height: auto;
+    margin: auto;
 }
