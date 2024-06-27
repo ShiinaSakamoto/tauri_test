@@ -1,6 +1,6 @@
-import styles from "./TopBar.module.scss";
+import styles from "./RightSideComponents.module.scss";
 
-export const TopBar = () => {
+export const RightSideComponents = () => {
     return (
         <div className={styles["container"]}>
             <p>VRC mic mute sync</p>
