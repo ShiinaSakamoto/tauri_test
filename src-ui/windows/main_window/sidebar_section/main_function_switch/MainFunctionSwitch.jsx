@@ -26,11 +26,10 @@ export const MainFunctionSwitch = () => {
     );
 }
 
-import React from "react";
+import { useSvg } from "@utils/useSvg";
+
 const SwitchContainer = (props) => {
-    const imageWithClass = props.image_component
-        ? React.cloneElement(props.image_component, { className: styles["switch_image"] })
-        : null;
+    const imageWithClass = useSvg(props.image_component, { className: styles["switch_image"] });
 
     return (
         <div className={styles["switch_container"]}>

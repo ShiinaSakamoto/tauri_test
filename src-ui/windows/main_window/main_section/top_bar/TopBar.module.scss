@@ -1,8 +1,7 @@
 .container {
     height: var(--main_window_topbar_height);
     display: flex;
-    flex-direction: row;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
+    margin-right: 1.6rem;
 }
