@@ -12,7 +12,7 @@ export const LogBox = () => {
         <div className={styles["container"]}>
             <p>Log Box</p>
             {sent_message_list.map(sent_message => {
-                return <p key={crypto.randomUUID()}>{sent_message}</p>;
+                return <p className={styles["text"]} key={crypto.randomUUID()}>{sent_message}</p>;
             })}
         </div>
     );
