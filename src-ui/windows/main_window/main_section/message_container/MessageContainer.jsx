@@ -8,8 +8,6 @@ import { MessageInputBox } from "./message_input_box/MessageInputBox";
 export const MessageContainer = () => {
     const { isDragging, position, separatorProps } = useResizable({
         axis: "y",
-        initial: 150,
-        min: 52,
         reverse: true
     });
 
