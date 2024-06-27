@@ -17,10 +17,6 @@ i18n
         lng: "ja",
         fallbackLng: "en",
         debug: true,
-        // backend: {
-        //   loadPath: "./{{lng}}.yml",
-        //   parse: function(data) { return yaml.load(data) },
-        // },
         interpolation: {
             escapeValue: false // react already safes from xss
         }
