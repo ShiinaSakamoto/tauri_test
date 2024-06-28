@@ -26,15 +26,15 @@ export const useSentMessageList = () => {
 
 
 
-export const isMainWindowSidebarCompactMode = atom(false);
+export const isCompactMode = atom(false);
 
-export const useIsMainWindowSidebarCompactMode = () => {
-    const setIsMainWindowSidebarCompactMode = useSetAtom(isMainWindowSidebarCompactMode);
-    const currentIsMainWindowSidebarCompactMode = useAtomValue(isMainWindowSidebarCompactMode);
+export const useIsCompactMode = () => {
+    const setIsCompactMode = useSetAtom(isCompactMode);
+    const currentIsCompactMode = useAtomValue(isCompactMode);
 
-    const updateIsMainWindowSidebarCompactMode = (is_compact_mode) => {
-        setIsMainWindowSidebarCompactMode(is_compact_mode);
+    const updateIsCompactMode = (is_compact_mode) => {
+        setIsCompactMode(is_compact_mode);
     };
 
-    return { updateIsMainWindowSidebarCompactMode, currentIsMainWindowSidebarCompactMode };
+    return { updateIsCompactMode, currentIsCompactMode };
 };

@@ -2,20 +2,20 @@ import clsx from "clsx";
 import styles from "./SidebarCompactModeButton.module.scss";
 
 import { useSvg } from "@utils/useSvg";
-import { useIsMainWindowSidebarCompactMode } from "@store";
+import { useIsCompactMode } from "@store";
 import ArrowLeftSvg from "@images/arrow_left.svg?react";
 
 export const SidebarCompactModeButton = () => {
-    const { updateIsMainWindowSidebarCompactMode, currentIsMainWindowSidebarCompactMode } = useIsMainWindowSidebarCompactMode();
+    const { updateIsCompactMode, currentIsCompactMode } = useIsCompactMode();
 
     const toggleCompactMode = () => {
-        updateIsMainWindowSidebarCompactMode(!currentIsMainWindowSidebarCompactMode);
-    }
+        updateIsCompactMode(!currentIsCompactMode);
+    };
 
     const arrowLeftSvg_C = useSvg(<ArrowLeftSvg />,
         {
             className: clsx(styles["arrow_left_svg"], {
-                [styles["reverse"]]: currentIsMainWindowSidebarCompactMode
+                [styles["reverse"]]: currentIsCompactMode
             }),
             preserveAspectRatio: "none"
         }
