@@ -4,9 +4,12 @@
     background-color: var(--dark_850_color);
 }
 
-.to_compact_mode_arrow_svg {
+.arrow_left_svg {
     height: 100%;
     width: 100%;
     padding: 1.1rem 0rem;
     color: var(--dark_400_color);
+    &.reverse {
+        transform: rotate(180deg);
+    }
 }

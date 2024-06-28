@@ -23,3 +23,18 @@ export const useSentMessageList = () => {
 
     return { updateSentMessageList, currentSentMessageList };
 };
+
+
+
+export const isMainWindowSidebarCompactMode = atom(false);
+
+export const useIsMainWindowSidebarCompactMode = () => {
+    const setIsMainWindowSidebarCompactMode = useSetAtom(isMainWindowSidebarCompactMode);
+    const currentIsMainWindowSidebarCompactMode = useAtomValue(isMainWindowSidebarCompactMode);
+
+    const updateIsMainWindowSidebarCompactMode = (is_compact_mode) => {
+        setIsMainWindowSidebarCompactMode(is_compact_mode);
+    };
+
+    return { updateIsMainWindowSidebarCompactMode, currentIsMainWindowSidebarCompactMode };
+};
