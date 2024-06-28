@@ -19,7 +19,7 @@ export const SidebarSection = () => {
             <Logo />
             <MainFunctionSwitch />
             {!currentIsCompactMode && <LanguageSettings />}
-            {/* <OpenSettings /> */}
+            <OpenSettings />
         </div>
     );
 }
