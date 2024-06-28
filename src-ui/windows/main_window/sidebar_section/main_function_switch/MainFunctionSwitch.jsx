@@ -11,33 +11,44 @@ export const MainFunctionSwitch = () => {
     return (
         <div className={styles["container"]}>
             <SwitchContainer switch_label={t("main_window.translation")} image_component={
-                <TranslationSvg />
+                <TranslationSvg className={ styles["switch_image"] } />
             }/>
             <SwitchContainer switch_label="Voice2Chatbox" image_component={
-                <MicSvg />
+                <MicSvg className={ styles["switch_image"] } />
             }/>
             <SwitchContainer switch_label="Speaker2Log" image_component={
-                <HeadphonesSvg />
+                <HeadphonesSvg className={ styles["switch_image"] } />
             }/>
             <SwitchContainer switch_label="Foreground" image_component={
-                <ForegroundSvg />
+                <ForegroundSvg className={ styles["switch_image"] } />
             }/>
         </div>
     );
 }
 
-import { useSvg } from "@utils/useSvg";
+import clsx from "clsx";
+import { useIsCompactMode } from "@store";
 
 const SwitchContainer = (props) => {
-    const imageWithClass = useSvg(props.image_component, { className: styles["switch_image"] });
+    const { currentIsCompactMode } = useIsCompactMode();
+
+    const switch_container_class_names = clsx(styles["switch_container"], {
+        [styles["is_compact_mode"]]: currentIsCompactMode
+    });
+
+    const switch_label_class_names = clsx(styles["switch_label"], {
+        [styles["is_compact_mode"]]: currentIsCompactMode
+    });
+
+    const switch_indicator_class_names = clsx(styles["switch_indicator"], {
+        [styles["is_compact_mode"]]: currentIsCompactMode
+    });
 
     return (
-        <div className={styles["switch_container"]}>
-            <p className={styles["switch_label"]}>{props.switch_label}</p>
-            <div className={styles["switch_box"]}>
-                {imageWithClass}
-                <div className={styles["switch_indicator"]}></div>
-            </div>
+        <div className={switch_container_class_names}>
+            <p className={switch_label_class_names}>{props.switch_label}</p>
+            {props.image_component}
+            <div className={switch_indicator_class_names}></div>
         </div>
     );
 }

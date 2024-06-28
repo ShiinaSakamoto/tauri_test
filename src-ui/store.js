@@ -23,3 +23,18 @@ export const useSentMessageList = () => {
 
     return { updateSentMessageList, currentSentMessageList };
 };
+
+
+
+export const isCompactMode = atom(false);
+
+export const useIsCompactMode = () => {
+    const setIsCompactMode = useSetAtom(isCompactMode);
+    const currentIsCompactMode = useAtomValue(isCompactMode);
+
+    const updateIsCompactMode = (is_compact_mode) => {
+        setIsCompactMode(is_compact_mode);
+    };
+
+    return { updateIsCompactMode, currentIsCompactMode };
+};
