@@ -26,18 +26,32 @@ export const MainFunctionSwitch = () => {
     );
 }
 
+import clsx from "clsx";
 import { useSvg } from "@utils/useSvg";
+import { useIsCompactMode } from "@store";
 
 const SwitchContainer = (props) => {
+    const { currentIsCompactMode } = useIsCompactMode();
+
     const imageWithClass = useSvg(props.image_component, { className: styles["switch_image"] });
 
+    const switch_container_class_names = clsx(styles["switch_container"], {
+        [styles["is_compact_mode"]]: currentIsCompactMode
+    });
+
+    const switch_label_class_names = clsx(styles["switch_label"], {
+        [styles["is_compact_mode"]]: currentIsCompactMode
+    });
+
+    const switch_indicator_class_names = clsx(styles["switch_indicator"], {
+        [styles["is_compact_mode"]]: currentIsCompactMode
+    });
+
     return (
-        <div className={styles["switch_container"]}>
-            <p className={styles["switch_label"]}>{props.switch_label}</p>
-            <div className={styles["switch_box"]}>
-                {imageWithClass}
-                <div className={styles["switch_indicator"]}></div>
-            </div>
+        <div className={switch_container_class_names}>
+            <p className={switch_label_class_names}>{props.switch_label}</p>
+            {imageWithClass}
+            <div className={switch_indicator_class_names}></div>
         </div>
     );
 }
