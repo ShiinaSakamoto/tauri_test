@@ -61,7 +61,7 @@ const PresetContainer = () => {
         } else if (selector === "target_language") {
             toggleTargetLanguageSelector();
         }
-    }
+    };
 
 
     const your_language_settings = {

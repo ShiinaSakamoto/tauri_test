@@ -10,9 +10,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: red;
     border-radius: 0.6rem 0.6rem 0 0;
-
+    &.is_selected {
+        background-color: var(--dark_800_color);
+    }
 }
 
 .tab_number {
