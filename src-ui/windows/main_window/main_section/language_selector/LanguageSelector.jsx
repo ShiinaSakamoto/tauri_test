@@ -1,8 +1,19 @@
+import { useTranslation } from "react-i18next";
+
 import { language_list } from "@data";
 import styles from "./LanguageSelector.module.scss";
 
 import { LanguageSelectorTopBar } from "./language_selector_top_bar/LanguageSelectorTopBar"
 export const LanguageSelector = ({ id }) => {
+    const { t } = useTranslation();
+
+    const languageTitles = {
+        "your_language": t("selectable_language_window.title_your_language"),
+        "target_language": t("selectable_language_window.title_target_language")
+    };
+
+    const language_selector_title = languageTitles[id] || "";
+
     const groupLanguagesByFirstLetter = (languages) => {
         return languages.reduce((acc, { language, country }) => {
             const firstLetter = language[0].toUpperCase();
@@ -18,7 +29,7 @@ export const LanguageSelector = ({ id }) => {
 
     return (
         <div className={styles.container}>
-            <LanguageSelectorTopBar title={id}/>
+            <LanguageSelectorTopBar title={language_selector_title}/>
             <div className={styles.language_list_scroll_wrapper}>
                 <div className={styles.language_list}>
                     {Object.entries(groupedLanguages).map(([letter, languages]) => (
