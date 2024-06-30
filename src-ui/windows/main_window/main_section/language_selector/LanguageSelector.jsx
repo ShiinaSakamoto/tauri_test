@@ -19,11 +19,12 @@ export const LanguageSelector = ({ id }) => {
     return (
         <div className={styles.container}>
             <LanguageSelectorTopBar title={id}/>
-            <div className={styles.top_bar}></div>
-            <div className={styles.language_list}>
-                {Object.entries(groupedLanguages).map(([letter, languages]) => (
-                    <LanguageGroup key={letter} letter={letter} languages={languages} />
-                ))}
+            <div className={styles.language_list_scroll_wrapper}>
+                <div className={styles.language_list}>
+                    {Object.entries(groupedLanguages).map(([letter, languages]) => (
+                        <LanguageGroup key={letter} letter={letter} languages={languages} />
+                    ))}
+                </div>
             </div>
         </div>
     );
