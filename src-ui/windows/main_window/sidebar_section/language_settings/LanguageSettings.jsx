@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 import styles from "./LanguageSettings.module.scss";
 
 import { PresetSelectTabs } from "./preset_select_tabs/PresetSelectTabs";
-import { LanguageSelector } from "./language_selector/LanguageSelector";
+import { LanguageSelectorOpenButton } from "./language_selector_open_button/LanguageSelectorOpenButton";
 import { LanguageSwapButton } from "./language_swap_button/LanguageSwapButton";
-import { TranslatorSelector } from "./translator_selector/TranslatorSelector";
+import { TranslatorSelectorOpenButton } from "./translator_selector_open_button/TranslatorSelectorOpenButton";
 
 export const LanguageSettings = () => {
     return (
@@ -78,10 +78,10 @@ const PresetContainer = () => {
 
     return (
         <div className={styles["preset_container"]}>
-            <LanguageSelector {...your_language_settings} />
+            <LanguageSelectorOpenButton {...your_language_settings} />
             <LanguageSwapButton />
-            <LanguageSelector {...target_language_settings} />
-            <TranslatorSelector />
+            <LanguageSelectorOpenButton {...target_language_settings} />
+            <TranslatorSelectorOpenButton />
         </div>
     );
 }

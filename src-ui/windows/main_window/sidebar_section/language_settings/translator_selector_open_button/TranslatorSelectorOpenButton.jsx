@@ -1,8 +1,8 @@
 import { useTranslation } from "react-i18next";
 
-import styles from "./TranslatorSelector.module.scss";
+import styles from "./TranslatorSelectorOpenButton.module.scss";
 
-export const TranslatorSelector = () => {
+export const TranslatorSelectorOpenButton = () => {
     const { t } = useTranslation();
     return (
         <div className={styles["container"]}>

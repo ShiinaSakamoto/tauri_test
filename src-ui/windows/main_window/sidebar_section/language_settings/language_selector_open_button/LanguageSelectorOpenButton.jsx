@@ -1,10 +1,10 @@
 import clsx from "clsx";
 
-import styles from "./LanguageSelector.module.scss";
+import styles from "./LanguageSelectorOpenButton.module.scss";
 
 import ArrowLeftSvg from "@images/arrow_left.svg?react";
 
-export const LanguageSelector = (props) => {
+export const LanguageSelectorOpenButton = (props) => {
 
     const toggleLanguageSelector = () => {
         props.onClickFunction();
