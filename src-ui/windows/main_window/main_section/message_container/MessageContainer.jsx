@@ -12,14 +12,14 @@ export const MessageContainer = () => {
     });
 
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             <LogBox />
             <Separator
                 dir={"horizontal"}
                 isDragging={isDragging}
                 {...separatorProps}
             />
-            <div className={styles["message_box_resize_wrapper"]} style={ { height: `${(position / 10) - 1.5 }rem` } }>
+            <div className={styles.message_box_resize_wrapper} style={ { height: `${(position / 10) - 1.5 }rem` } }>
                 <MessageInputBox />
             </div>
         </div>
@@ -42,12 +42,12 @@ const Separator = ({ id, dir, isDragging, ...props }) => {
             // )}
             // onFocus={() => setIsFocused(true)}
             // onBlur={() => setIsFocused(false)}
-            className={styles["separator"]}
+            className={styles.separator}
             {...props}
         />
     )
 
 
     // console.log(separatorProps);
-    // return <div className={styles["separator"]} {...separatorProps }></div>;
+    // return <div className={styles.separator} {...separatorProps }></div>;
 };

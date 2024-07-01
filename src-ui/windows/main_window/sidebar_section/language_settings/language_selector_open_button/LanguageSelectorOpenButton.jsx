@@ -15,11 +15,11 @@ export const LanguageSelectorOpenButton = (props) => {
     });
 
     return (
-        <div className={styles["container"]}>
-            <p className={styles["title"]}>{props.title}</p>
-            <div className={styles["dropdown_menu_container"]} onClick={toggleLanguageSelector}>
-                <p className={styles["selected_language"]}>Japanese</p>
-                <p className={styles["selected_language"]}>(Japan)</p>
+        <div className={styles.container}>
+            <p className={styles.title}>{props.title}</p>
+            <div className={styles.dropdown_menu_container} onClick={toggleLanguageSelector}>
+                <p className={styles.selected_language}>Japanese</p>
+                <p className={styles.selected_language}>(Japan)</p>
                 <ArrowLeftSvg className={class_names} />
             </div>
         </div>

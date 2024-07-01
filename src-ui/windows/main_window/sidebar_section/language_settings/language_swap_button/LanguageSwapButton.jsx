@@ -8,13 +8,13 @@ export const LanguageSwapButton = () => {
     const { t } = useTranslation();
 
     return (
-        <div className={styles["container"]}>
-            <div className={styles["swap_button_wrapper"]}>
+        <div className={styles.container}>
+            <div className={styles.swap_button_wrapper}>
                 <NarrowArrowDownSvg className={
                     `${styles["narrow_arrow_down_svg"]} ${styles["reverse"]}`
                 }/>
-                <p className={styles["label"]}>{t("main_window.translate_each_other_label")}</p>
-                <NarrowArrowDownSvg className={styles["narrow_arrow_down_svg"]}/>
+                <p className={styles.label}>{t("main_window.translate_each_other_label")}</p>
+                <NarrowArrowDownSvg className={styles.narrow_arrow_down_svg}/>
             </div>
         </div>
     );

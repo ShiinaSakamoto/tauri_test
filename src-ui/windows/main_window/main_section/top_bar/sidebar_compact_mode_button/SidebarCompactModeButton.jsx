@@ -16,7 +16,7 @@ export const SidebarCompactModeButton = () => {
     });
 
     return (
-        <div className={styles["container"]} onClick={toggleCompactMode}>
+        <div className={styles.container} onClick={toggleCompactMode}>
             <ArrowLeftSvg className={class_names} preserveAspectRatio="none" />
         </div>
     );

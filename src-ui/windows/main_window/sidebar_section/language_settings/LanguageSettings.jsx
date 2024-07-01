@@ -9,8 +9,8 @@ import { TranslatorSelectorOpenButton } from "./translator_selector_open_button/
 
 export const LanguageSettings = () => {
     return (
-        <div className={styles["container"]}>
-            <p className={styles["title"]}>Language Settings</p>
+        <div className={styles.container}>
+            <p className={styles.title}>Language Settings</p>
             <PresetSelectTabs />
             <PresetContainer />
         </div>
@@ -77,7 +77,7 @@ const PresetContainer = () => {
     };
 
     return (
-        <div className={styles["preset_container"]}>
+        <div className={styles.preset_container}>
             <LanguageSelectorOpenButton {...your_language_settings} />
             <LanguageSwapButton />
             <LanguageSelectorOpenButton {...target_language_settings} />

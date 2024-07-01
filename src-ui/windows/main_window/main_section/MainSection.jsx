@@ -25,7 +25,7 @@ export const MainSection = () => {
     };
 
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             {handleMainContainer()}
         </div>
     );

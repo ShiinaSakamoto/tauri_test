@@ -9,7 +9,7 @@ import ForegroundSvg from "@images/foreground.svg?react";
 export const MainFunctionSwitch = () => {
     const { t } = useTranslation();
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             <SwitchContainer switch_label={t("main_window.translation")} image_component={
                 <TranslationSvg className={ styles["switch_image"] } />
             }/>
