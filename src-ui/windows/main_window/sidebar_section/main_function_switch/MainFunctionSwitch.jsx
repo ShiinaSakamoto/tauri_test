@@ -9,7 +9,7 @@ import ForegroundSvg from "@images/foreground.svg?react";
 export const MainFunctionSwitch = () => {
     const { t } = useTranslation();
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             <SwitchContainer switch_label={t("main_window.translation")} image_component={
                 <TranslationSvg className={ styles["switch_image"] } />
             }/>
@@ -24,7 +24,7 @@ export const MainFunctionSwitch = () => {
             }/>
         </div>
     );
-}
+};
 
 import clsx from "clsx";
 import { useIsCompactMode } from "@store";
@@ -51,4 +51,4 @@ const SwitchContainer = (props) => {
             <div className={switch_indicator_class_names}></div>
         </div>
     );
-}
+};

@@ -5,9 +5,9 @@ import { RightSideComponents } from "./right_side_components/RightSideComponents
 
 export const TopBar = () => {
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             <SidebarCompactModeButton />
             <RightSideComponents />
         </div>
     );
-}
+};

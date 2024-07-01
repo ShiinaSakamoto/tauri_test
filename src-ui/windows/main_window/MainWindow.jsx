@@ -5,9 +5,9 @@ import { MainSection } from "./main_section/MainSection";
 
 export const MainWindow = () => {
     return (
-        <div className={styles["container"]}>
+        <div className={styles.container}>
             <SidebarSection />
             <MainSection />
         </div>
     );
-}
+};

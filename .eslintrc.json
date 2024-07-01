@@ -13,7 +13,8 @@
         "@typescript-eslint/no-empty-interface": 0,
         "no-unreachable": "warn",
         "no-unused-vars": "warn",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "semi": ["error", "always"]
     },
     "settings": {
         "react": {

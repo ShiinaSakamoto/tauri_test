@@ -19,21 +19,21 @@ export const MessageInputBox = () => {
     };
 
     return (
-        <div className={styles["container"]}>
-            <div className={styles["message_box_wrapper"]}>
+        <div className={styles.container}>
+            <div className={styles.message_box_wrapper}>
                 <textarea
-                    className={styles["message_box_input_area"]}
+                    className={styles.message_box_input_area}
                     onChange={onChangeFunction}
                     placeholder="Input Textfield"
                 />
             </div>
             <button
-                className={styles["message_send_button"]}
+                className={styles.message_send_button}
                 type="button"
                 onClick={onSubmitFunction}
             >
-                <SendMessageSvg className={styles["message_send_icon"]} />
+                <SendMessageSvg className={styles.message_send_icon} />
             </button>
         </div>
     );
-};
+};;

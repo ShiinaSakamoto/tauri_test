@@ -39,7 +39,7 @@ export const LanguageSelector = ({ id }) => {
             </div>
         </div>
     );
-};
+};;
 
 const LanguageGroup = ({ letter, languages }) => {
     return (
@@ -50,7 +50,7 @@ const LanguageGroup = ({ letter, languages }) => {
             ))}
         </div>
     );
-};
+};;
 
 const LanguageButton = ({ languageData }) => {
     return (
@@ -58,4 +58,4 @@ const LanguageButton = ({ languageData }) => {
             <p className={styles.language_label}>{languageData.language} ({languageData.country})</p>
         </div>
     );
-};
+};;

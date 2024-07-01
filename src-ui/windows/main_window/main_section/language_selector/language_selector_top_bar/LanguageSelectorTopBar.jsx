@@ -20,4 +20,4 @@ export const LanguageSelectorTopBar = (props) => {
             <p className={styles.title}>{props.title}</p>
         </div>
     );
-};
+};;
