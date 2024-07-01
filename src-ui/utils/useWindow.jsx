@@ -1,42 +1,32 @@
 import { WebviewWindow } from "@tauri-apps/api/window";
 import { store } from "@store";
-import { emit, once } from '@tauri-apps/api/event';
+import { getCurrent } from "@tauri-apps/api/window";
 
-let count =0;
 export const useWindow = () => {
 
     const createSecondWindow = async () => {
+        const main_window = getCurrent();
         if (store.second_window === null) {
-            const webview = new WebviewWindow("theUniqueLabel", {
+            const second_window = new WebviewWindow("theUniqueLabel", {
                 url: "./second_window.html",
             });
 
-            webview.once("tauri://created", function () {
-                // webview window successfully created
-                console.log("success");
-                // webview.hide();
-                store.second_window = webview;
+            second_window.once("tauri://created", function () {
+                store.second_window = second_window;
             });
-            webview.once("tauri://error", function (e) {
-                // an error occurred during webview window creation
+            second_window.once("tauri://error", function (e) {
                 console.log(e);
             });
-            webview.onCloseRequested((event) => {
-                console.log("close the window has requested");
+
+            const unlisten_c = second_window.onCloseRequested((event) => {
                 store.second_window = null;
-                // webview.close();
-                // event.preventDefault();
-                // preventDefault is not working. it looks a bug and will fix 2.x ?
-                // https://github.com/tauri-apps/tauri/issues/8435
-                // https://github.com/tauri-apps/tauri/pull/8621
+                unlisten_c();
             });
 
-            await once("onCloseRequested", function (e) {
-                // an error occurred during webview window creation
-                console.log("onCloseRequested", count);
-                count+=1;
-                store.second_window = null;
+            main_window.onCloseRequested((event) => {
+                second_window.close();
             });
+
         }
     };
 
