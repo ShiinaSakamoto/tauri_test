@@ -6,6 +6,7 @@ import {
 
 export const store = {
     child: null,
+    second_window: null,
 };
 
 export const sentMessageList = atom(["default"]);
