@@ -24,4 +24,4 @@ export const LanguageSelectorOpenButton = (props) => {
             </div>
         </div>
     );
-}
+};

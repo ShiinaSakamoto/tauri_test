@@ -9,4 +9,4 @@ export const OpenSettings = () => {
             </div>
         </div>
     );
-}
+};

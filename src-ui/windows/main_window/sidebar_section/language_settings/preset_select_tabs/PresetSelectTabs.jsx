@@ -8,7 +8,7 @@ export const PresetSelectTabs = () => {
             <Tab preset_number={3} />
         </div>
     );
-}
+};
 
 import clsx from "clsx";
 
@@ -29,4 +29,4 @@ const Tab = (props) => {
             <p className={styles.tab_number}>{props.preset_number}</p>
         </div>
     );
-}
+};

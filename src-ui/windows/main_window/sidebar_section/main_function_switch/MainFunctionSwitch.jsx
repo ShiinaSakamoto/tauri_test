@@ -24,7 +24,7 @@ export const MainFunctionSwitch = () => {
             }/>
         </div>
     );
-}
+};
 
 import clsx from "clsx";
 import { useIsCompactMode } from "@store";
@@ -51,4 +51,4 @@ const SwitchContainer = (props) => {
             <div className={switch_indicator_class_names}></div>
         </div>
     );
-}
+};

@@ -24,7 +24,7 @@ export const MessageContainer = () => {
             </div>
         </div>
     );
-}
+};
 
 const Separator = ({ id, dir, isDragging, ...props }) => {
     // const [isFocused, setIsFocused] = useState(false)

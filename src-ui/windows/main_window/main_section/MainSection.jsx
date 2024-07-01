@@ -29,4 +29,4 @@ export const MainSection = () => {
             {handleMainContainer()}
         </div>
     );
-}
+};

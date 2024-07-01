@@ -9,5 +9,5 @@ export const RightSideComponents = () => {
             <p>Overlay(VR)</p>
             <HelpSvg className={styles.help_svg} />
         </div>
-    )
-}
+    );
+};

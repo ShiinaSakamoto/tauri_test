@@ -20,4 +20,4 @@ export const SidebarCompactModeButton = () => {
             <ArrowLeftSvg className={class_names} preserveAspectRatio="none" />
         </div>
     );
-}
+};

@@ -6,7 +6,7 @@ export const Logo = () => {
             <LogoBox />
         </div>
     );
-}
+};
 
 
 import vrct_logo from "@images/vrct_logo_for_dark_mode.png"

@@ -18,4 +18,4 @@ export const LanguageSwapButton = () => {
             </div>
         </div>
     );
-}
+};

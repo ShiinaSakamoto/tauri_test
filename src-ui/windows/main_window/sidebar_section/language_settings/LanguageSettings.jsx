@@ -15,7 +15,7 @@ export const LanguageSettings = () => {
             <PresetContainer />
         </div>
     );
-}
+};
 
 
 
@@ -84,4 +84,4 @@ const PresetContainer = () => {
             <TranslatorSelectorOpenButton />
         </div>
     );
-}
+};
