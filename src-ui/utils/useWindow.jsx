@@ -7,8 +7,9 @@ export const useWindow = () => {
     const createSecondWindow = async () => {
         const main_window = getCurrent();
         if (store.second_window === null) {
-            const second_window = new WebviewWindow("theUniqueLabel", {
+            const second_window = new WebviewWindow("theUniqueLabel",{
                 url: "./second_window.html",
+                center: true
             });
 
             second_window.once("tauri://created", function () {
