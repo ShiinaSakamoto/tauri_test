@@ -1,5 +1,11 @@
 .container {
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 1rem;
+}
+
+.help_svg {
+    width: 2.4rem;
+    color: var(--dark_400_color);
 }

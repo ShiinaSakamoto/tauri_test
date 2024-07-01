@@ -38,3 +38,36 @@ export const useIsCompactMode = () => {
 
     return { updateIsCompactMode, currentIsCompactMode };
 };
+
+
+
+export const isOpenedLanguageSelector = atom({
+    your_language: false,
+    target_language: false,
+});
+
+export const useIsOpenedLanguageSelector = () => {
+    const setIsOpenedLanguageSelector = useSetAtom(isOpenedLanguageSelector);
+    const currentIsOpenedLanguageSelector = useAtomValue(isOpenedLanguageSelector);
+
+    const updateIsOpenedLanguageSelector = (is_opened_language_selector_obj) => {
+        setIsOpenedLanguageSelector(is_opened_language_selector_obj);
+    };
+
+    return { updateIsOpenedLanguageSelector, currentIsOpenedLanguageSelector };
+};
+
+
+
+export const selectedTab = atom(1);
+
+export const useSelectedTab = () => {
+    const setSelectedTab = useSetAtom(selectedTab);
+    const currentSelectedTab = useAtomValue(selectedTab);
+
+    const updateSelectedTab = (is_compact_mode) => {
+        setSelectedTab(is_compact_mode);
+    };
+
+    return { updateSelectedTab, currentSelectedTab };
+};
