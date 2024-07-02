@@ -3,6 +3,15 @@ import json
 import datetime
 import time
 
+def dummyStartPythonMessage():
+    print(json.dumps({"init_key_from_py": "Initialization from Python."}), flush=True)
+
+def dummyLoadingCount():
+    for i in range(4):
+        response = json.dumps({"count_key_from_py": str(i)})
+        print(response, flush=True)
+        time.sleep(1)
+
 def main():
     received_data = sys.stdin.readline().strip()
     received_data = json.loads(received_data)
@@ -15,25 +24,10 @@ def main():
         print(response, flush=True)
 
 
-    # with open('process.log', 'a') as f:
-    #     f.write(f"Received data: {received_data}\n")
-    #     f.write(f"Response: {response}\n")
-
-    # # 標準出力に結果を出力
-    # for i in range(3):
-    #     response = json.dumps({"count_key_from_py": str(i)})
-    #     print(response, flush=True)
-    #     time.sleep(1)
-
 if __name__ == "__main__":
     try:
-        print(json.dumps({"init_key_from_py": "Initialization from Python."}), flush=True)
-        # print("Initialization from Python.", flush=True)
-        for i in range(4):
-            response = json.dumps({"count_key_from_py": str(i)})
-            print(response, flush=True)
-            time.sleep(1)
-
+        dummyStartPythonMessage()
+        dummyLoadingCount()
         while True:
             main()
     except Exception:
