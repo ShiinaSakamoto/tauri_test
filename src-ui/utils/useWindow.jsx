@@ -4,37 +4,37 @@ import { getCurrent } from "@tauri-apps/api/window";
 
 export const useWindow = () => {
 
-    const createSecondWindow = async () => {
+    const createConfigWindow = async () => {
         const main_window = getCurrent();
-        if (store.second_window === null) {
-            const second_window = new WebviewWindow("theUniqueLabel",{
-                url: "./second_window.html",
+        if (store.config_window === null) {
+            const config_window = new WebviewWindow("theUniqueLabel",{
+                url: "./src-ui/windows/config_window/index.html",
                 center: true
             });
 
-            second_window.once("tauri://created", function () {
-                store.second_window = second_window;
+            config_window.once("tauri://created", function () {
+                store.config_window = config_window;
             });
-            second_window.once("tauri://error", function (e) {
+            config_window.once("tauri://error", function (e) {
                 console.log(e);
             });
 
-            const unlisten_c = second_window.onCloseRequested((event) => {
-                store.second_window = null;
+            const unlisten_c = config_window.onCloseRequested((event) => {
+                store.config_window = null;
                 unlisten_c();
             });
 
             main_window.onCloseRequested((event) => {
-                second_window.close();
+                config_window.close();
             });
 
         }
     };
 
-    const closeSecondWindow = () => {
-        console.log(store.second_window);
-        store.second_window.close();
+    const closeConfigWindow = () => {
+        console.log(store.config_window);
+        store.config_window.close();
     };
 
-    return { createSecondWindow, closeSecondWindow };
+    return { createConfigWindow, closeConfigWindow };
 };

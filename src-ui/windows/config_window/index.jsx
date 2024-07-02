@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client";
 
 const App = () => {
     return (
-        <div>Secondly window div</div>
+        <div>Config window div</div>
     );
 };
 

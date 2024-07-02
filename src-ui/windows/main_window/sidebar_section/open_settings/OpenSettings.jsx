@@ -4,10 +4,10 @@ import ConfigurationSvg from "@images/configuration.svg?react";
 import { useWindow } from "@utils/useWindow";
 
 export const OpenSettings = () => {
-    const { createSecondWindow } = useWindow();
+    const { createConfigWindow } = useWindow();
 
     const openConfigWindow = () => {
-        createSecondWindow();
+        createConfigWindow();
     };
 
     return (
