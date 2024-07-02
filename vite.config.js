@@ -21,6 +21,16 @@ export default defineConfig(async () => ({
         },
     },
 
+    build: {
+        outDir: path.resolve(__dirname, "dist"),
+        rollupOptions: {
+            input: {
+                main: path.resolve(__dirname, "index.html"),
+                second: path.resolve(__dirname, "second_window.html"),
+            },
+        },
+    },
+
     resolve: {
         alias: {
             "@data": path.resolve(__dirname, "./data.js"),
