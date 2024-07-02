@@ -1,11 +1,16 @@
-import { WebviewWindow } from "@tauri-apps/api/window";
+import { getCurrent, WebviewWindow, LogicalPosition, LogicalSize } from "@tauri-apps/api/window";
 import { store } from "@store";
-import { getCurrent } from "@tauri-apps/api/window";
 
 export const useWindow = () => {
+    const main_window = getCurrent();
+
+    const setMainWindowPosition = () => {
+        main_window.setDecorations(true);
+        main_window.setSize(new LogicalSize(800, 600));
+        main_window.setPosition(new LogicalPosition(0, 0));
+    };
 
     const createSecondWindow = async () => {
-        const main_window = getCurrent();
         if (store.second_window === null) {
             const second_window = new WebviewWindow("theUniqueLabel",{
                 url: "./second_window.html",
@@ -36,5 +41,5 @@ export const useWindow = () => {
         store.second_window.close();
     };
 
-    return { createSecondWindow, closeSecondWindow };
+    return { setMainWindowPosition, createSecondWindow, closeSecondWindow };
 };

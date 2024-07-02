@@ -20,14 +20,20 @@ def main():
     #     f.write(f"Response: {response}\n")
 
     # # 標準出力に結果を出力
-    # for i in range(10):
-    #     print(str(i), flush=True)
+    # for i in range(3):
+    #     response = json.dumps({"count_key_from_py": str(i)})
+    #     print(response, flush=True)
     #     time.sleep(1)
 
 if __name__ == "__main__":
     try:
         print(json.dumps({"init_key_from_py": "Initialization from Python."}), flush=True)
         # print("Initialization from Python.", flush=True)
+        for i in range(4):
+            response = json.dumps({"count_key_from_py": str(i)})
+            print(response, flush=True)
+            time.sleep(1)
+
         while True:
             main()
     except Exception:

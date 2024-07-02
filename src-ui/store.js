@@ -9,6 +9,36 @@ export const store = {
     second_window: null,
 };
 
+export const isBackendReady = atom(false);
+
+export const useIsBackendReady = () => {
+    const setIsBackendReady = useSetAtom(isBackendReady);
+    const currentIsBackendReady = useAtomValue(isBackendReady);
+
+    const updateIsBackendReady = (is_backend_ready) => {
+        setIsBackendReady(is_backend_ready);
+    };
+
+    return { updateIsBackendReady, currentIsBackendReady };
+};
+
+
+
+export const pythonReadyCount = atom("0");
+
+export const usePythonReadyCount = () => {
+    const setPythonReadyCount = useSetAtom(pythonReadyCount);
+    const currentPythonReadyCount = useAtomValue(pythonReadyCount);
+
+    const updatePythonReadyCount = (python_count) => {
+        setPythonReadyCount(python_count);
+    };
+
+    return { updatePythonReadyCount, currentPythonReadyCount };
+};
+
+
+
 export const sentMessageList = atom(["default"]);
 
 export const useSentMessageList = () => {
