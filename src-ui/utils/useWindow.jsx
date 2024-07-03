@@ -9,7 +9,9 @@ export const useWindow = () => {
         if (store.config_window === null) {
             const config_window = new WebviewWindow("theUniqueLabel",{
                 url: "./src-ui/windows/config_window/index.html",
-                center: true
+                center: true,
+                width: 1080,
+                height: 700,
             });
 
             config_window.once("tauri://created", function () {
