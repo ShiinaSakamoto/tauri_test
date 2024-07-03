@@ -87,3 +87,18 @@ export const useSelectedConfigTab = () => {
 
     return { updateSelectedConfigTab, currentSelectedConfigTab };
 };
+
+
+
+export const openedDropdownMenu = atom("");
+
+export const useOpenedDropdownMenu = () => {
+    const setOpenedDropdownMenu = useSetAtom(openedDropdownMenu);
+    const currentOpenedDropdownMenu = useAtomValue(openedDropdownMenu);
+
+    const updateOpenedDropdownMenu = (opened_dropdown_menu_id) => {
+        setOpenedDropdownMenu(opened_dropdown_menu_id);
+    };
+
+    return { updateOpenedDropdownMenu, currentOpenedDropdownMenu };
+};
