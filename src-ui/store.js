@@ -9,96 +9,53 @@ export const store = {
     config_window: null,
 };
 
-export const sentMessageList = atom(["default"]);
 
-export const useSentMessageList = () => {
-    const setSentMessageList = useSetAtom(sentMessageList);
-    const currentSentMessageList = useAtomValue(sentMessageList);
+const createAtomWithHook = (initialValue, property_names) => {
+    const atomInstance = atom(initialValue);
 
-    const updateSentMessageList = (message) => {
-        setSentMessageList((old_value) => [
-            ...old_value,
-            message,
-        ]);
+    const useHook = () => {
+        const setAtom = useSetAtom(atomInstance);
+        const currentAtom = useAtomValue(atomInstance);
+
+        const updateAtom = (value) => {
+            setAtom(value);
+        };
+
+        return { [property_names.update]: updateAtom, [property_names.current]: currentAtom };
     };
 
-    return { updateSentMessageList, currentSentMessageList };
+    return { atomInstance, useHook };
 };
 
-
-
-export const isCompactMode = atom(false);
-
-export const useIsCompactMode = () => {
-    const setIsCompactMode = useSetAtom(isCompactMode);
-    const currentIsCompactMode = useAtomValue(isCompactMode);
-
-    const updateIsCompactMode = (is_compact_mode) => {
-        setIsCompactMode(is_compact_mode);
-    };
-
-    return { updateIsCompactMode, currentIsCompactMode };
-};
-
-
-
-export const isOpenedLanguageSelector = atom({
-    your_language: false,
-    target_language: false,
+export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
+    update: "updateSentMessageList",
+    current: "currentSentMessageList"
 });
 
-export const useIsOpenedLanguageSelector = () => {
-    const setIsOpenedLanguageSelector = useSetAtom(isOpenedLanguageSelector);
-    const currentIsOpenedLanguageSelector = useAtomValue(isOpenedLanguageSelector);
+export const { atomInstance: isCompactMode, useHook: useIsCompactMode } = createAtomWithHook(false, {
+    update: "updateIsCompactMode",
+    current: "currentIsCompactMode"
+});
 
-    const updateIsOpenedLanguageSelector = (is_opened_language_selector_obj) => {
-        setIsOpenedLanguageSelector(is_opened_language_selector_obj);
-    };
+export const { atomInstance: isOpenedLanguageSelector, useHook: useIsOpenedLanguageSelector } = createAtomWithHook(
+    { your_language: false, target_language: false },
+    {
+        update: "updateIsOpenedLanguageSelector",
+        current: "currentIsOpenedLanguageSelector"
+    }
+);
 
-    return { updateIsOpenedLanguageSelector, currentIsOpenedLanguageSelector };
-};
+export const { atomInstance: selectedTab, useHook: useSelectedTab } = createAtomWithHook(1, {
+    update: "updateSelectedTab",
+    current: "currentSelectedTab"
+});
 
+export const { atomInstance: selectedConfigTab, useHook: useSelectedConfigTab } = createAtomWithHook("appearance", {
+    update: "updateSelectedConfigTab",
+    current: "currentSelectedConfigTab"
+});
 
-
-export const selectedTab = atom(1);
-
-export const useSelectedTab = () => {
-    const setSelectedTab = useSetAtom(selectedTab);
-    const currentSelectedTab = useAtomValue(selectedTab);
-
-    const updateSelectedTab = (selected_tab_number) => {
-        setSelectedTab(selected_tab_number);
-    };
-
-    return { updateSelectedTab, currentSelectedTab };
-};
-
-
-
-export const selectedConfigTab = atom("appearance");
-
-export const useSelectedConfigTab = () => {
-    const setSelectedConfigTab = useSetAtom(selectedConfigTab);
-    const currentSelectedConfigTab = useAtomValue(selectedConfigTab);
-
-    const updateSelectedConfigTab = (selected_config_tab_id) => {
-        setSelectedConfigTab(selected_config_tab_id);
-    };
-
-    return { updateSelectedConfigTab, currentSelectedConfigTab };
-};
-
-
-
-export const openedDropdownMenu = atom("");
-
-export const useOpenedDropdownMenu = () => {
-    const setOpenedDropdownMenu = useSetAtom(openedDropdownMenu);
-    const currentOpenedDropdownMenu = useAtomValue(openedDropdownMenu);
-
-    const updateOpenedDropdownMenu = (opened_dropdown_menu_id) => {
-        setOpenedDropdownMenu(opened_dropdown_menu_id);
-    };
-
-    return { updateOpenedDropdownMenu, currentOpenedDropdownMenu };
-};
+export const { atomInstance: openedDropdownMenu, useHook: useOpenedDropdownMenu } = createAtomWithHook("", {
+    update: "updateOpenedDropdownMenu",
+    current: "currentOpenedDropdownMenu"
+});
