@@ -66,9 +66,24 @@ export const useSelectedTab = () => {
     const setSelectedTab = useSetAtom(selectedTab);
     const currentSelectedTab = useAtomValue(selectedTab);
 
-    const updateSelectedTab = (is_compact_mode) => {
-        setSelectedTab(is_compact_mode);
+    const updateSelectedTab = (selected_tab_number) => {
+        setSelectedTab(selected_tab_number);
     };
 
     return { updateSelectedTab, currentSelectedTab };
+};
+
+
+
+export const selectedConfigTab = atom("appearance");
+
+export const useSelectedConfigTab = () => {
+    const setSelectedConfigTab = useSetAtom(selectedConfigTab);
+    const currentSelectedConfigTab = useAtomValue(selectedConfigTab);
+
+    const updateSelectedConfigTab = (selected_config_tab_id) => {
+        setSelectedConfigTab(selected_config_tab_id);
+    };
+
+    return { updateSelectedConfigTab, currentSelectedConfigTab };
 };
