@@ -16,8 +16,8 @@
 }
 
 .language_list {
-    column-count: 3;
-    column-gap: 0;
+    column-count: auto;
+    column-width: 16rem;
 }
 
 .language_each_letter_box {
