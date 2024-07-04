@@ -9,7 +9,6 @@ export const store = {
     config_window: null,
 };
 
-
 const createAtomWithHook = (initialValue, property_names) => {
     const atomInstance = atom(initialValue);
 
@@ -26,6 +25,34 @@ const createAtomWithHook = (initialValue, property_names) => {
 
     return { atomInstance, useHook };
 };
+
+import { loadable } from "jotai/utils";
+const createAsyncAtomWithHook = (initialValue, propertyNames) => {
+    const atomInstance = atom(initialValue);
+    const asyncAtom = atom(async (get) => get(atomInstance));
+
+    const loadableAtom = loadable(asyncAtom);
+
+    const useHook = () => {
+        const setAtom = useSetAtom(atom(null, async (get, set, payload) => {
+            console.log(payload);
+            set(atomInstance, payload());
+        }));
+
+        const currentAtom = useAtomValue(loadableAtom);
+
+        const updateAtom = async (asyncFunction) => {
+            setAtom(asyncFunction);
+        };
+
+        return { [propertyNames.update]: updateAtom, [propertyNames.current]: currentAtom };
+    };
+
+    return { atomInstance, useHook };
+};
+
+
+
 
 export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
     update: "updateSentMessageList",
@@ -61,7 +88,7 @@ export const { atomInstance: openedDropdownMenu, useHook: useOpenedDropdownMenu 
 });
 
 
-export const { atomInstance: selectedMicDevice, useHook: useSelectedMicDevice } = createAtomWithHook("device b", {
+export const { atomInstance: selectedMicDevice, useHook: useSelectedMicDevice } = createAsyncAtomWithHook("device b", {
     update: "updateSelectedMicDevice",
     current: "currentSelectedMicDevice"
 });
