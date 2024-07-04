@@ -59,3 +59,17 @@ export const { atomInstance: openedDropdownMenu, useHook: useOpenedDropdownMenu 
     update: "updateOpenedDropdownMenu",
     current: "currentOpenedDropdownMenu"
 });
+
+
+export const { atomInstance: selectedMicDevice, useHook: useSelectedMicDevice } = createAtomWithHook("device b", {
+    update: "updateSelectedMicDevice",
+    current: "currentSelectedMicDevice"
+});
+const test_list = {
+    a: "Device A",
+    "device b": "Device B",
+};
+export const { atomInstance: micDeviceList, useHook: useMicDeviceList } = createAtomWithHook(test_list, {
+    update: "updateMicDeviceList",
+    current: "currentMicDeviceList"
+});

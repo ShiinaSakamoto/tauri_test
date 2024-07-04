@@ -8,16 +8,19 @@ export const DropdownMenu = (props) => {
 
     const { updateOpenedDropdownMenu, currentOpenedDropdownMenu } = useOpenedDropdownMenu();
     const openDropdownMenu = () => {
-        updateOpenedDropdownMenu(props.container_id);
+        updateOpenedDropdownMenu(props.dropdown_id);
     };
 
     const selectValue = (key) => {
         updateOpenedDropdownMenu("");
-        console.log(key);
+        props.selectFunction({
+            dropdown_id: props.dropdown_id,
+            selected_id: key,
+        });
     };
 
     const dropdown_content_wrapper_class_name = clsx(styles["dropdown_content_wrapper"], {
-        [styles["is_opened"]]: (currentOpenedDropdownMenu === props.container_id) ? true : false
+        [styles["is_opened"]]: (currentOpenedDropdownMenu === props.dropdown_id) ? true : false
     });
 
     return (
@@ -30,7 +33,7 @@ export const DropdownMenu = (props) => {
                     {
                         Object.entries(props.list).map(([key, value]) => {
                             return (
-                                <div key={key} className={styles.value_button} onClick={() => selectValue({container_id: props.container_id, value_id: key})}>
+                                <div key={key} className={styles.value_button} onClick={() => selectValue(key)}>
                                     <p className={styles.value_text} >{value}</p>
                                 </div>
                             );
