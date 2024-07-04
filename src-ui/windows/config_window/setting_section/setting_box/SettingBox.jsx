@@ -19,8 +19,6 @@ const Appearance = () => {
     const { DropdownMenuContainer } = useSettingBox();
 
     const selectFunction = (selected_data) => {
-        // console.log(selected_data);
-        // console.log(currentMicDeviceList[selected_data.selected_id]);
         const asyncFunction = () => {
             return new Promise((resolve) => {
                 setTimeout(() => {
@@ -30,16 +28,11 @@ const Appearance = () => {
         };
         updateSelectedMicDevice(asyncFunction);
     };
-    console.log(currentSelectedMicDevice);
-
-    if (currentSelectedMicDevice.state === 'loading') {
-        return <div>Loading...</div>;
-    }
 
     return (
         <>
             <DropdownMenuContainer dropdown_id="mic_host" label="Mic Host/Driver" desc="description" selected_id="b" list={{a: "A", b: "B", c: "C"}} />
-            <DropdownMenuContainer dropdown_id="mic_device" label="Mic Device" desc="description" selected_id={currentSelectedMicDevice.data} list={currentMicDeviceList} selectFunction={selectFunction} />
+            <DropdownMenuContainer dropdown_id="mic_device" label="Mic Device" desc="description" selected_id={currentSelectedMicDevice.data} list={currentMicDeviceList} selectFunction={selectFunction} state={currentSelectedMicDevice.state} />
         </>
     );
 };

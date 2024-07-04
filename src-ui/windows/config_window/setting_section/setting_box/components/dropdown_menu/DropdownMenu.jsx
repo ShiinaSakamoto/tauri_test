@@ -23,10 +23,18 @@ export const DropdownMenu = (props) => {
         [styles["is_opened"]]: (currentOpenedDropdownMenu === props.dropdown_id) ? true : false
     });
 
+    const dropdown_toggle_button_class_name = clsx(styles["dropdown_toggle_button"], {
+        [styles["is_loading"]]: (props.state === "loading") ? true : false
+    });
+
+
     return (
         <div className={styles.container}>
-            <div className={styles.dropdown_toggle_button} onClick={openDropdownMenu}>
-                <p className={styles.dropdown_selected_text}>{props.list[props.selected_id]}</p>
+            <div className={dropdown_toggle_button_class_name} onClick={openDropdownMenu}>
+                {(props.state === "loading")
+                    ? <p className={styles.dropdown_selected_text}>Loading...</p>
+                    : <p className={styles.dropdown_selected_text}>{props.list[props.selected_id]}</p>
+                }
             </div>
             <div className={dropdown_content_wrapper_class_name}>
                 <div className={styles.dropdown_content}>

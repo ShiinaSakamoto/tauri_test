@@ -12,6 +12,9 @@
     &:active {
         background-color: var(--dark_950_color);
     }
+    &.is_loading {
+        pointer-events: none;
+    }
 }
 
 .dropdown_selected_text {

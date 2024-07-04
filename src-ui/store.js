@@ -34,9 +34,8 @@ const createAsyncAtomWithHook = (initialValue, propertyNames) => {
     const loadableAtom = loadable(asyncAtom);
 
     const useHook = () => {
-        const setAtom = useSetAtom(atom(null, async (get, set, payload) => {
-            console.log(payload);
-            set(atomInstance, payload());
+        const setAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc) => {
+            set(atomInstance, payloadAsyncFunc());
         }));
 
         const currentAtom = useAtomValue(loadableAtom);
