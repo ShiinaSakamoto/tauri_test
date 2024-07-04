@@ -3,6 +3,7 @@
 }
 
 .dropdown_toggle_button {
+    position: relative;
     background-color: var(--dark_925_color);
     min-width: 20rem;
     padding: 0.6rem 0.8rem;
@@ -54,4 +55,44 @@
 
 .value_text {
     font-size: 1.2rem;
+}
+
+
+$loader_size: 2rem;
+$loader_line_width: 0.2rem;
+$half_line_width: calc($loader_line_width / 2);
+$calc_translate: calc(-50% + #{$half_line_width});
+$translate: translate($calc_translate, $calc_translate);
+
+.loader {
+    position: absolute;
+    top: calc(50% - #{$half_line_width});
+    right: 0;
+    transform: $translate;
+    width: $loader_size;
+    height: $loader_size;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: $loader_line_width solid var(--dark_400_color);
+    border-right: $loader_line_width solid transparent;
+    animation: rotation 0.6s linear infinite;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: $loader_size;
+        height: $loader_size;
+        border-radius: 50%;
+        border-bottom: $loader_line_width solid var(--primary_400_color);
+        border-left: $loader_line_width solid transparent;
+    }
+}
+
+@keyframes rotation {
+    0% {
+        transform: $translate rotate(0deg);
+    }
+    100% {
+        transform: $translate rotate(360deg);
+    }
 }

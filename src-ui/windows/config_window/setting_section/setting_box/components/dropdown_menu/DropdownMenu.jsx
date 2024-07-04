@@ -35,6 +35,10 @@ export const DropdownMenu = (props) => {
                     ? <p className={styles.dropdown_selected_text}>Loading...</p>
                     : <p className={styles.dropdown_selected_text}>{props.list[props.selected_id]}</p>
                 }
+                {(props.state === "loading")
+                    ? <span className={styles.loader}></span>
+                    : null
+                }
             </div>
             <div className={dropdown_content_wrapper_class_name}>
                 <div className={styles.dropdown_content}>
