@@ -20,7 +20,15 @@ const createAtomWithHook = (initialValue, property_names) => {
             setAtom(value);
         };
 
-        return { [property_names.update]: updateAtom, [property_names.current]: currentAtom };
+        const addAtom = (value) => {
+            setAtom((old_value) => [...old_value, value]);
+        };
+
+        return {
+            [property_names.update]: updateAtom,
+            [property_names.add]: addAtom,
+            [property_names.current]: currentAtom,
+        };
     };
 
     return { atomInstance, useHook };
@@ -55,6 +63,7 @@ const createAsyncAtomWithHook = (initialValue, propertyNames) => {
 
 export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
     update: "updateSentMessageList",
+    add: "addSentMessageList",
     current: "currentSentMessageList"
 });
 
