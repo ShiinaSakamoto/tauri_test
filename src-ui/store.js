@@ -37,7 +37,7 @@ const createAtomWithHook = (initialValue, property_names) => {
 };
 
 import { loadable } from "jotai/utils";
-const createAsyncAtomWithHook = (initialValue, propertyNames) => {
+const createAsyncAtomWithHook = (initialValue, property_names) => {
     const atomInstance = atom(initialValue);
     const asyncAtom = atom(async (get) => get(atomInstance));
 
@@ -54,7 +54,7 @@ const createAsyncAtomWithHook = (initialValue, propertyNames) => {
             setAtom(asyncFunction);
         };
 
-        return { [propertyNames.update]: updateAtom, [propertyNames.current]: currentAtom };
+        return { [property_names.update]: updateAtom, [property_names.current]: currentAtom };
     };
 
     return { atomInstance, useHook };
