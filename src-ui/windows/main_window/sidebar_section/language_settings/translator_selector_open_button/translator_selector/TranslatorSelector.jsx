@@ -1,32 +1,31 @@
 import styles from "./TranslatorSelector.module.scss";
+import { chunkArray } from "@utils/chunkArray";
 
-import { useSelectedTranslator, useOpenedTranslatorSelector } from "@store";
+import { useTranslatorList, useSelectedTranslator, useOpenedTranslatorSelector } from "@store";
 export const TranslatorSelector = () => {
+    const { currentTranslatorList } = useTranslatorList();
+    const columns = chunkArray(currentTranslatorList, 2);
 
     return (
-        <div className={styles.container} >
+        <div className={styles.container}>
             <div className={styles.wrapper}>
-
-                <div className={styles.column_wrapper}>
-                    <TranslatorBox translator_id="DeepL" translator_name="DeepL" />
-                    <TranslatorBox translator_id="DeepL_API" translator_name={`DeepL\nAPI`} />
-                </div>
-                <div className={styles.column_wrapper}>
-                    <TranslatorBox translator_id="Google" translator_name="Google" />
-                    <TranslatorBox translator_id="Bing" translator_name="Bing" />
-                </div>
-                <div className={styles.column_wrapper}>
-                    <TranslatorBox translator_id="Papago" translator_name="Papago" />
-                    <TranslatorBox translator_id="CTranslate2" translator_name={`Internal\n(Default)`} />
-                </div>
-
+                {columns.map((column, column_index) => (
+                    <div className={styles.column_wrapper} key={`column_${column_index}`}>
+                        {column.map(({ translator_key, translator_name }) => (
+                            <TranslatorBox
+                                key={translator_key}
+                                translator_id={translator_key}
+                                translator_name={translator_name}
+                            />
+                        ))}
+                    </div>
+                ))}
             </div>
         </div>
     );
 };
 
 import clsx from "clsx";
-
 const TranslatorBox = (props) => {
     const { currentSelectedTranslator, updateSelectedTranslator} = useSelectedTranslator();
     const { updateOpenedTranslatorSelector} = useOpenedTranslatorSelector();

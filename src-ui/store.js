@@ -4,6 +4,8 @@ import {
     useSetAtom
 } from "jotai";
 
+import { translator_list } from "@data";
+
 export const store = {
     child: null,
     config_window: null,
@@ -107,6 +109,11 @@ const test_list = {
 export const { atomInstance: micDeviceList, useHook: useMicDeviceList } = createAtomWithHook(test_list, {
     update: "updateMicDeviceList",
     current: "currentMicDeviceList"
+});
+
+export const { atomInstance: translatorList, useHook: useTranslatorList } = createAtomWithHook(translator_list, {
+    update: "updateTranslatorList",
+    current: "currentTranslatorList"
 });
 
 export const { atomInstance: selectedTranslator, useHook: useSelectedTranslator } = createAtomWithHook("CTranslate2", {
