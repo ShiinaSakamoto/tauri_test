@@ -15,8 +15,9 @@ const createAtomWithHook = (initialValue, property_names) => {
     const atomInstance = atom(initialValue);
 
     const useHook = () => {
-        const setAtom = useSetAtom(atomInstance);
         const currentAtom = useAtomValue(atomInstance);
+
+        const setAtom = useSetAtom(atomInstance);
 
         const updateAtom = (value) => {
             setAtom(value);
@@ -27,9 +28,9 @@ const createAtomWithHook = (initialValue, property_names) => {
         };
 
         return {
+            [property_names.current]: currentAtom,
             [property_names.update]: updateAtom,
             [property_names.add]: addAtom,
-            [property_names.current]: currentAtom,
         };
     };
 
@@ -44,101 +45,102 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
     const loadableAtom = loadable(asyncAtom);
 
     const useHook = () => {
-        const setAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc) => {
-            set(atomInstance, payloadAsyncFunc());
-        }));
-
         const currentAtom = useAtomValue(loadableAtom);
 
-        const updateAtom = async (asyncFunction) => {
-            setAtom(asyncFunction);
+        const setAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc, ...args) => {
+            set(atomInstance, payloadAsyncFunc(...args));
+        }));
+
+
+        const updateAtom = async (asyncFunction, ...args) => {
+            setAtom(asyncFunction, ...args);
         };
 
-        return { [property_names.update]: updateAtom, [property_names.current]: currentAtom };
+        return { [property_names.current]: currentAtom, [property_names.update]: updateAtom };
     };
 
     return { atomInstance, useHook };
 };
 
 
-export const { atomInstance: mainFunctionStatus_Translation, useHook: useMainFunctionStatus_Translation } = createAsyncAtomWithHook(false, {
-    update: "updateMainFunctionStatus_Translation",
-    current: "currentMainFunctionStatus_Translation"
+export const { atomInstance: Status_Translation, useHook: useStatus_Translation } = createAsyncAtomWithHook(false, {
+    current: "currentStatus_Translation",
+    update: "updateStatus_Translation",
 });
-export const { atomInstance: mainFunctionStatus_TranscriptionSend, useHook: useMainFunctionStatus_TranscriptionSend } = createAsyncAtomWithHook(false, {
-    update: "updateMainFunctionStatus_TranscriptionSend",
-    current: "currentMainFunctionStatus_TranscriptionSend"
+export const { atomInstance: Status_TranscriptionSend, useHook: useStatus_TranscriptionSend } = createAsyncAtomWithHook(false, {
+    current: "currentStatus_TranscriptionSend",
+    update: "updateStatus_TranscriptionSend",
 });
-export const { atomInstance: mainFunctionStatus_TranscriptionReceive, useHook: useMainFunctionStatus_TranscriptionReceive } = createAsyncAtomWithHook(false, {
-    update: "updateMainFunctionStatus_TranscriptionReceive",
-    current: "currentMainFunctionStatus_TranscriptionReceive"
+export const { atomInstance: Status_TranscriptionReceive, useHook: useStatus_TranscriptionReceive } = createAsyncAtomWithHook(false, {
+    current: "currentStatus_TranscriptionReceive",
+    update: "updateStatus_TranscriptionReceive",
 });
-export const { atomInstance: mainFunctionStatus_Foreground, useHook: useMainFunctionStatus_Foreground } = createAsyncAtomWithHook(false, {
-    update: "updateMainFunctionStatus_Foreground",
-    current: "currentMainFunctionStatus_Foreground"
+export const { atomInstance: Status_Foreground, useHook: useStatus_Foreground } = createAsyncAtomWithHook(false, {
+    current: "currentStatus_Foreground",
+    update: "updateStatus_Foreground",
 });
 
 
 
 export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
+    current: "currentSentMessageList",
     update: "updateSentMessageList",
     add: "addSentMessageList",
-    current: "currentSentMessageList"
 });
 
 export const { atomInstance: isCompactMode, useHook: useIsCompactMode } = createAtomWithHook(false, {
+    current: "currentIsCompactMode",
     update: "updateIsCompactMode",
-    current: "currentIsCompactMode"
 });
 
 export const { atomInstance: isOpenedLanguageSelector, useHook: useIsOpenedLanguageSelector } = createAtomWithHook(
     { your_language: false, target_language: false },
     {
+        current: "currentIsOpenedLanguageSelector",
         update: "updateIsOpenedLanguageSelector",
-        current: "currentIsOpenedLanguageSelector"
     }
 );
 
 export const { atomInstance: selectedTab, useHook: useSelectedTab } = createAtomWithHook(1, {
+    current: "currentSelectedTab",
     update: "updateSelectedTab",
-    current: "currentSelectedTab"
 });
 
 export const { atomInstance: selectedConfigTab, useHook: useSelectedConfigTab } = createAtomWithHook("appearance", {
+    current: "currentSelectedConfigTab",
     update: "updateSelectedConfigTab",
-    current: "currentSelectedConfigTab"
 });
 
 export const { atomInstance: openedDropdownMenu, useHook: useOpenedDropdownMenu } = createAtomWithHook("", {
+    current: "currentOpenedDropdownMenu",
     update: "updateOpenedDropdownMenu",
-    current: "currentOpenedDropdownMenu"
 });
 
 
 export const { atomInstance: selectedMicDevice, useHook: useSelectedMicDevice } = createAsyncAtomWithHook("device b", {
+    current: "currentSelectedMicDevice",
     update: "updateSelectedMicDevice",
-    current: "currentSelectedMicDevice"
 });
 const test_list = {
     a: "Device A",
     "device b": "Device B",
 };
 export const { atomInstance: micDeviceList, useHook: useMicDeviceList } = createAtomWithHook(test_list, {
+    current: "currentMicDeviceList",
     update: "updateMicDeviceList",
-    current: "currentMicDeviceList"
 });
 
 export const { atomInstance: translatorList, useHook: useTranslatorList } = createAtomWithHook(translator_list, {
+    current: "currentTranslatorList",
     update: "updateTranslatorList",
-    current: "currentTranslatorList"
 });
 
 export const { atomInstance: selectedTranslator, useHook: useSelectedTranslator } = createAtomWithHook("CTranslate2", {
+    current: "currentSelectedTranslator",
     update: "updateSelectedTranslator",
-    current: "currentSelectedTranslator"
 });
 
 export const { atomInstance: openedTranslatorSelector, useHook: useOpenedTranslatorSelector } = createAtomWithHook(false, {
+    current: "currentOpenedTranslatorSelector",
     update: "updateOpenedTranslatorSelector",
-    current: "currentOpenedTranslatorSelector"
 });

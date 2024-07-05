@@ -5,95 +5,49 @@ import TranslationSvg from "@images/translation.svg?react";
 import MicSvg from "@images/mic.svg?react";
 import HeadphonesSvg from "@images/headphones.svg?react";
 import ForegroundSvg from "@images/foreground.svg?react";
-import {
-    useMainFunctionStatus_Translation,
-    useMainFunctionStatus_TranscriptionSend,
-    useMainFunctionStatus_TranscriptionReceive,
-    useMainFunctionStatus_Foreground,
-    useIsCompactMode,
-} from "@store";
+import { useIsCompactMode } from "@store";
 
+import { useMainFunction } from "@logics/useMainFunction";
 
 export const MainFunctionSwitch = () => {
     const { t } = useTranslation();
 
     const {
-        currentMainFunctionStatus_Translation,
-        updateMainFunctionStatus_Translation,
-    } = useMainFunctionStatus_Translation();
-    const {
-        currentMainFunctionStatus_TranscriptionSend,
-        updateMainFunctionStatus_TranscriptionSend,
-    } = useMainFunctionStatus_TranscriptionSend();
-    const {
-        currentMainFunctionStatus_TranscriptionReceive,
-        updateMainFunctionStatus_TranscriptionReceive,
-    } = useMainFunctionStatus_TranscriptionReceive();
-    const {
-        currentMainFunctionStatus_Foreground,
-        updateMainFunctionStatus_Foreground,
-    } = useMainFunctionStatus_Foreground();
+        toggleTranslation, currentStatus_Translation,
+        toggleTranscriptionSend, currentStatus_TranscriptionSend,
+        toggleTranscriptionReceive, currentStatus_TranscriptionReceive,
+        toggleForeground, currentStatus_Foreground,
+    } = useMainFunction();
 
-
-    const toggleMainFunctionSwitch = (switch_id, is_turned_on) => {
-        const asyncFunction = () => {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(is_turned_on);
-                }, 3000);
-            });
-        };
-
-        switch (switch_id) {
-            case "translation":
-                updateMainFunctionStatus_Translation(asyncFunction);
-                break;
-
-            case "transcription_send":
-                updateMainFunctionStatus_TranscriptionSend(asyncFunction);
-                break;
-
-            case "transcription_receive":
-                updateMainFunctionStatus_TranscriptionReceive(asyncFunction);
-                break;
-
-            case "foreground":
-                updateMainFunctionStatus_Foreground(asyncFunction);
-                break;
-
-            default:
-                break;
-        }
-    };
 
     const switch_items = [
         {
             switch_id: "translation",
             label: t("main_window.translation"),
             SvgComponent: TranslationSvg,
-            currentState: currentMainFunctionStatus_Translation,
-            toggleFunction: toggleMainFunctionSwitch,
+            currentState: currentStatus_Translation,
+            toggleFunction: toggleTranslation,
         },
         {
             switch_id: "transcription_send",
             label: t("main_window.transcription_send"),
             SvgComponent: MicSvg,
-            currentState: currentMainFunctionStatus_TranscriptionSend,
-            toggleFunction: toggleMainFunctionSwitch,
+            currentState: currentStatus_TranscriptionSend,
+            toggleFunction: toggleTranscriptionSend,
         },
         {
             switch_id: "transcription_receive",
             label: t("main_window.transcription_receive"),
             SvgComponent: HeadphonesSvg,
-            currentState: currentMainFunctionStatus_TranscriptionReceive,
-            toggleFunction: toggleMainFunctionSwitch,
+            currentState: currentStatus_TranscriptionReceive,
+            toggleFunction: toggleTranscriptionReceive,
         },
         {
             switch_id: "foreground",
             label: t("main_window.foreground"),
             SvgComponent: ForegroundSvg,
-            currentState: currentMainFunctionStatus_Foreground,
-            toggleFunction: toggleMainFunctionSwitch,
+            currentState: currentStatus_Foreground,
+            toggleFunction: toggleForeground,
         },
     ];
 
@@ -127,7 +81,7 @@ export const SwitchContainer = ({ switchLabel, switch_id, children, currentState
     return (
         <div
             className={getClassNames(styles.switch_container)}
-            onClick={() => toggleFunction(switch_id, !currentState.data)}
+            onClick={toggleFunction}
         >
             <p className={getClassNames(styles.switch_label)}>{switchLabel}</p>
             {children}
