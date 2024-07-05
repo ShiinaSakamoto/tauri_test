@@ -6,12 +6,12 @@ import { useSentMessageList } from "@store";
 
 export const MessageInputBox = () => {
     const [inputValue, setInputValue] = useState("");
-    const { updateSentMessageList } = useSentMessageList();
+    const { addSentMessageList } = useSentMessageList();
 
     const onSubmitFunction = (e) => {
         e.preventDefault();
         asyncSendMessage(inputValue);
-        updateSentMessageList(inputValue);
+        addSentMessageList(inputValue);
     };
 
     const onChangeFunction = (e) => {

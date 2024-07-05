@@ -6,10 +6,14 @@ import { PresetSelectTabs } from "./preset_select_tabs/PresetSelectTabs";
 import { LanguageSelectorOpenButton } from "./language_selector_open_button/LanguageSelectorOpenButton";
 import { LanguageSwapButton } from "./language_swap_button/LanguageSwapButton";
 import { TranslatorSelectorOpenButton } from "./translator_selector_open_button/TranslatorSelectorOpenButton";
+import { useOpenedTranslatorSelector } from "@store";
 
 export const LanguageSettings = () => {
+    const { updateOpenedTranslatorSelector} = useOpenedTranslatorSelector();
+    const closeTranslatorSelector = () => updateOpenedTranslatorSelector(false);
+
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onMouseLeave={closeTranslatorSelector} >
             <p className={styles.title}>Language Settings</p>
             <PresetSelectTabs />
             <PresetContainer />

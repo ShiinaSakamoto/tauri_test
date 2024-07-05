@@ -6,4 +6,4 @@ export const useSvg = (svg_component, ...props) => {
         : null;
 
     return svgWithClass;
-}
+};

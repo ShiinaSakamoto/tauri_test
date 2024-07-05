@@ -7,26 +7,24 @@ import { LanguageSelector } from "./language_selector/LanguageSelector";
 import { useIsOpenedLanguageSelector } from "@store";
 
 export const MainSection = () => {
-    const { currentIsOpenedLanguageSelector } = useIsOpenedLanguageSelector();
-
-    const handleMainContainer = () => {
-        if (currentIsOpenedLanguageSelector.your_language === true) {
-            return <LanguageSelector id="your_language"/>;
-        } else if (currentIsOpenedLanguageSelector.target_language === true) {
-            return <LanguageSelector id="target_language"/>;
-        } else {
-            return (
-                <>
-                    <TopBar />
-                    <MessageContainer />
-                </>
-            );
-        }
-    };
 
     return (
         <div className={styles.container}>
-            {handleMainContainer()}
+            <TopBar />
+            <MessageContainer />
+            <HandleLanguageSelector />
         </div>
     );
+};
+
+const HandleLanguageSelector = () => {
+    const { currentIsOpenedLanguageSelector } = useIsOpenedLanguageSelector();
+
+    if (currentIsOpenedLanguageSelector.your_language === true) {
+        return <LanguageSelector id="your_language"/>;
+    } else if (currentIsOpenedLanguageSelector.target_language === true) {
+        return <LanguageSelector id="target_language"/>;
+    } else {
+        return null;
+    }
 };

@@ -4,71 +4,141 @@ import {
     useSetAtom
 } from "jotai";
 
+import { translator_list } from "@data";
+
 export const store = {
     child: null,
-    second_window: null,
+    config_window: null,
 };
 
-export const sentMessageList = atom(["default"]);
+const createAtomWithHook = (initialValue, property_names) => {
+    const atomInstance = atom(initialValue);
 
-export const useSentMessageList = () => {
-    const setSentMessageList = useSetAtom(sentMessageList);
-    const currentSentMessageList = useAtomValue(sentMessageList);
+    const useHook = () => {
+        const setAtom = useSetAtom(atomInstance);
+        const currentAtom = useAtomValue(atomInstance);
 
-    const updateSentMessageList = (message) => {
-        setSentMessageList((old_value) => [
-            ...old_value,
-            message,
-        ]);
+        const updateAtom = (value) => {
+            setAtom(value);
+        };
+
+        const addAtom = (value) => {
+            setAtom((old_value) => [...old_value, value]);
+        };
+
+        return {
+            [property_names.update]: updateAtom,
+            [property_names.add]: addAtom,
+            [property_names.current]: currentAtom,
+        };
     };
 
-    return { updateSentMessageList, currentSentMessageList };
+    return { atomInstance, useHook };
 };
 
+import { loadable } from "jotai/utils";
+const createAsyncAtomWithHook = (initialValue, property_names) => {
+    const atomInstance = atom(initialValue);
+    const asyncAtom = atom(async (get) => get(atomInstance));
 
+    const loadableAtom = loadable(asyncAtom);
 
-export const isCompactMode = atom(false);
+    const useHook = () => {
+        const setAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc) => {
+            set(atomInstance, payloadAsyncFunc());
+        }));
 
-export const useIsCompactMode = () => {
-    const setIsCompactMode = useSetAtom(isCompactMode);
-    const currentIsCompactMode = useAtomValue(isCompactMode);
+        const currentAtom = useAtomValue(loadableAtom);
 
-    const updateIsCompactMode = (is_compact_mode) => {
-        setIsCompactMode(is_compact_mode);
+        const updateAtom = async (asyncFunction) => {
+            setAtom(asyncFunction);
+        };
+
+        return { [property_names.update]: updateAtom, [property_names.current]: currentAtom };
     };
 
-    return { updateIsCompactMode, currentIsCompactMode };
+    return { atomInstance, useHook };
 };
 
 
-
-export const isOpenedLanguageSelector = atom({
-    your_language: false,
-    target_language: false,
+export const { atomInstance: mainFunctionStatus_Translation, useHook: useMainFunctionStatus_Translation } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_Translation",
+    current: "currentMainFunctionStatus_Translation"
+});
+export const { atomInstance: mainFunctionStatus_TranscriptionSend, useHook: useMainFunctionStatus_TranscriptionSend } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_TranscriptionSend",
+    current: "currentMainFunctionStatus_TranscriptionSend"
+});
+export const { atomInstance: mainFunctionStatus_TranscriptionReceive, useHook: useMainFunctionStatus_TranscriptionReceive } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_TranscriptionReceive",
+    current: "currentMainFunctionStatus_TranscriptionReceive"
+});
+export const { atomInstance: mainFunctionStatus_Foreground, useHook: useMainFunctionStatus_Foreground } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_Foreground",
+    current: "currentMainFunctionStatus_Foreground"
 });
 
-export const useIsOpenedLanguageSelector = () => {
-    const setIsOpenedLanguageSelector = useSetAtom(isOpenedLanguageSelector);
-    const currentIsOpenedLanguageSelector = useAtomValue(isOpenedLanguageSelector);
 
-    const updateIsOpenedLanguageSelector = (is_opened_language_selector_obj) => {
-        setIsOpenedLanguageSelector(is_opened_language_selector_obj);
-    };
 
-    return { updateIsOpenedLanguageSelector, currentIsOpenedLanguageSelector };
+export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
+    update: "updateSentMessageList",
+    add: "addSentMessageList",
+    current: "currentSentMessageList"
+});
+
+export const { atomInstance: isCompactMode, useHook: useIsCompactMode } = createAtomWithHook(false, {
+    update: "updateIsCompactMode",
+    current: "currentIsCompactMode"
+});
+
+export const { atomInstance: isOpenedLanguageSelector, useHook: useIsOpenedLanguageSelector } = createAtomWithHook(
+    { your_language: false, target_language: false },
+    {
+        update: "updateIsOpenedLanguageSelector",
+        current: "currentIsOpenedLanguageSelector"
+    }
+);
+
+export const { atomInstance: selectedTab, useHook: useSelectedTab } = createAtomWithHook(1, {
+    update: "updateSelectedTab",
+    current: "currentSelectedTab"
+});
+
+export const { atomInstance: selectedConfigTab, useHook: useSelectedConfigTab } = createAtomWithHook("appearance", {
+    update: "updateSelectedConfigTab",
+    current: "currentSelectedConfigTab"
+});
+
+export const { atomInstance: openedDropdownMenu, useHook: useOpenedDropdownMenu } = createAtomWithHook("", {
+    update: "updateOpenedDropdownMenu",
+    current: "currentOpenedDropdownMenu"
+});
+
+
+export const { atomInstance: selectedMicDevice, useHook: useSelectedMicDevice } = createAsyncAtomWithHook("device b", {
+    update: "updateSelectedMicDevice",
+    current: "currentSelectedMicDevice"
+});
+const test_list = {
+    a: "Device A",
+    "device b": "Device B",
 };
+export const { atomInstance: micDeviceList, useHook: useMicDeviceList } = createAtomWithHook(test_list, {
+    update: "updateMicDeviceList",
+    current: "currentMicDeviceList"
+});
 
+export const { atomInstance: translatorList, useHook: useTranslatorList } = createAtomWithHook(translator_list, {
+    update: "updateTranslatorList",
+    current: "currentTranslatorList"
+});
 
+export const { atomInstance: selectedTranslator, useHook: useSelectedTranslator } = createAtomWithHook("CTranslate2", {
+    update: "updateSelectedTranslator",
+    current: "currentSelectedTranslator"
+});
 
-export const selectedTab = atom(1);
-
-export const useSelectedTab = () => {
-    const setSelectedTab = useSetAtom(selectedTab);
-    const currentSelectedTab = useAtomValue(selectedTab);
-
-    const updateSelectedTab = (is_compact_mode) => {
-        setSelectedTab(is_compact_mode);
-    };
-
-    return { updateSelectedTab, currentSelectedTab };
-};
+export const { atomInstance: openedTranslatorSelector, useHook: useOpenedTranslatorSelector } = createAtomWithHook(false, {
+    update: "updateOpenedTranslatorSelector",
+    current: "currentOpenedTranslatorSelector"
+});
