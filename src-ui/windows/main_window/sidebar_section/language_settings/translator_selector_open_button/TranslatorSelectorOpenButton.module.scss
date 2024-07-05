@@ -1,8 +1,9 @@
 .container {
+    position: relative;
     width: 100%;
 }
 
-.translator_selector_wrapper {
+.translator_selector_button {
     width: auto;
     display: flex;
     justify-content: center;

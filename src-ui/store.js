@@ -108,3 +108,13 @@ export const { atomInstance: micDeviceList, useHook: useMicDeviceList } = create
     update: "updateMicDeviceList",
     current: "currentMicDeviceList"
 });
+
+export const { atomInstance: selectedTranslator, useHook: useSelectedTranslator } = createAtomWithHook("CTranslate2", {
+    update: "updateSelectedTranslator",
+    current: "currentSelectedTranslator"
+});
+
+export const { atomInstance: openedTranslatorSelector, useHook: useOpenedTranslatorSelector } = createAtomWithHook(false, {
+    update: "updateOpenedTranslatorSelector",
+    current: "currentOpenedTranslatorSelector"
+});
