@@ -14,7 +14,7 @@ export const TranslatorSelectorOpenButton = () => {
 
     const { currentOpenedTranslatorSelector, updateOpenedTranslatorSelector} = useOpenedTranslatorSelector();
 
-    const openTranslatorSelector = () => updateOpenedTranslatorSelector(true);
+    const openTranslatorSelector = () => updateOpenedTranslatorSelector(!currentOpenedTranslatorSelector);
 
     return (
         <div className={styles.container}>
