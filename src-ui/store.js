@@ -61,6 +61,23 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
 };
 
 
+export const { atomInstance: mainFunctionStatus_Translation, useHook: useMainFunctionStatus_Translation } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_Translation",
+    current: "currentMainFunctionStatus_Translation"
+});
+export const { atomInstance: mainFunctionStatus_TranscriptionSend, useHook: useMainFunctionStatus_TranscriptionSend } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_TranscriptionSend",
+    current: "currentMainFunctionStatus_TranscriptionSend"
+});
+export const { atomInstance: mainFunctionStatus_TranscriptionReceive, useHook: useMainFunctionStatus_TranscriptionReceive } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_TranscriptionReceive",
+    current: "currentMainFunctionStatus_TranscriptionReceive"
+});
+export const { atomInstance: mainFunctionStatus_Foreground, useHook: useMainFunctionStatus_Foreground } = createAsyncAtomWithHook(false, {
+    update: "updateMainFunctionStatus_Foreground",
+    current: "currentMainFunctionStatus_Foreground"
+});
+
 
 
 export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {

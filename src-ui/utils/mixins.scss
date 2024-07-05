@@ -1,0 +1,41 @@
+// デフォルト変数
+$default_loader_size: 2rem !default;
+$default_loader_line_width: 0.2rem !default;
+
+// Loader Mixin
+@mixin loader($loader_size: $default_loader_size, $loader_line_width: $default_loader_line_width, $position: right, $position_amount: 0) {
+    $half_line_width: calc($loader_line_width / 2);
+    $calc_translate: calc(-50% + #{$half_line_width});
+
+    position: absolute;
+    top: calc(50% - #{$half_line_width});
+    #{$position}: $position_amount;
+    transform: translate($calc_translate, $calc_translate);
+    width: $loader_size;
+    height: $loader_size;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: $loader_line_width solid var(--dark_400_color);
+    border-right: $loader_line_width solid transparent;
+    animation: rotate_animation 0.6s linear infinite;
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: $loader_size;
+        height: $loader_size;
+        border-radius: 50%;
+        border-bottom: $loader_line_width solid var(--primary_400_color);
+        border-left: $loader_line_width solid transparent;
+    }
+
+    // @keyframes
+    @keyframes rotate_animation {
+        0% {
+            transform: translate($calc_translate, $calc_translate) rotate(0deg);
+        }
+        100% {
+            transform: translate($calc_translate, $calc_translate) rotate(360deg);
+        }
+    }
+}
