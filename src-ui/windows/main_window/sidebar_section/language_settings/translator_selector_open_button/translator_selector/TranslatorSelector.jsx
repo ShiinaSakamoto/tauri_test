@@ -11,11 +11,12 @@ export const TranslatorSelector = () => {
             <div className={styles.wrapper}>
                 {columns.map((column, column_index) => (
                     <div className={styles.column_wrapper} key={`column_${column_index}`}>
-                        {column.map(({ translator_key, translator_name }) => (
+                        {column.map(({ translator_key, translator_name, is_available }) => (
                             <TranslatorBox
                                 key={translator_key}
                                 translator_id={translator_key}
                                 translator_name={translator_name}
+                                is_available={is_available}
                             />
                         ))}
                     </div>
@@ -30,9 +31,11 @@ const TranslatorBox = (props) => {
     const { currentSelectedTranslator, updateSelectedTranslator} = useSelectedTranslator();
     const { updateOpenedTranslatorSelector} = useOpenedTranslatorSelector();
 
-    const box_class_name = clsx(styles.box, {
-        [styles["is_selected"]]: (currentSelectedTranslator === props.translator_id) ? true : false
-    });
+    const box_class_name = clsx(
+        styles.box,
+        { [styles["is_selected"]]: (currentSelectedTranslator === props.translator_id) ? true : false },
+        { [styles["is_available"]]: (props.is_available === true) ? true : false }
+    );
 
     const selectTranslator = () => {
         updateSelectedTranslator(props.translator_id);
