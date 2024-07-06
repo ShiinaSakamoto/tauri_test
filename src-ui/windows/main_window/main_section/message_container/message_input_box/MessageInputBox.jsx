@@ -1,16 +1,17 @@
 import { useState } from "react";
 import styles from "./MessageInputBox.module.scss";
-import { asyncSendMessage } from "@logic";
+// import { usePython } from "@logics/usePython";
 import SendMessageSvg from "@images/send_message.svg?react";
 import { useSentMessageList } from "@store";
 
 export const MessageInputBox = () => {
     const [inputValue, setInputValue] = useState("");
     const { addSentMessageList } = useSentMessageList();
+    // const { asyncSendMessage } = usePython();
 
     const onSubmitFunction = (e) => {
         e.preventDefault();
-        asyncSendMessage(inputValue);
+        // asyncSendMessage(inputValue);
         addSentMessageList(inputValue);
     };
 
