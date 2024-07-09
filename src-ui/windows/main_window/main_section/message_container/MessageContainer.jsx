@@ -45,7 +45,7 @@ const Separator = ({ id, dir, isDragging, ...props }) => {
             className={styles.separator}
             {...props}
         />
-    )
+    );
 
 
     // console.log(separatorProps);

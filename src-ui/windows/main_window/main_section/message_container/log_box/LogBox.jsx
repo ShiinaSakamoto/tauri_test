@@ -1,14 +1,14 @@
 import styles from "./LogBox.module.scss";
-
-import { useSentMessageList } from "@store";
+import { useMessageLogs } from "@store";
+import { MessageContainer } from "./message_container/MessageContainer";
 
 export const LogBox = () => {
-    const { currentSentMessageList } = useSentMessageList();
+    const { currentMessageLogs } = useMessageLogs();
+
     return (
         <div className={styles.container}>
-            <p>Log Box</p>
-            {currentSentMessageList.map(sent_message => {
-                return <p className={styles.text} key={crypto.randomUUID()}>{sent_message}</p>;
+            {currentMessageLogs.map(message_data => {
+                return <MessageContainer key={message_data.id} {...message_data} />;
             })}
         </div>
     );

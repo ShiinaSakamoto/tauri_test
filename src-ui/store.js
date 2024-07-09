@@ -4,7 +4,7 @@ import {
     useSetAtom
 } from "jotai";
 
-import { translator_list } from "@data";
+import { translator_list, generateTestData } from "@data";
 
 export const store = {
     child: null,
@@ -45,7 +45,8 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
     const loadableAtom = loadable(asyncAtom);
 
     const useHook = () => {
-        const currentAtom = useAtomValue(loadableAtom);
+        const asyncCurrentAtom = useAtomValue(loadableAtom);
+        // const currentAtom = useAtomValue(atomInstance);
 
         const setAtom = useSetAtom(atomInstance);
         const updateAtom = (value) => {
@@ -59,10 +60,20 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
             asyncSetAtom(asyncFunction, ...args);
         };
 
+        const addAtom = (value) => {
+            setAtom((old_value) => [...old_value, value]);
+        };
+        const asyncAddAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc, ...args) => {
+            const ald_value = await get(atomInstance);
+            set(atomInstance, payloadAsyncFunc([...ald_value, ...args]));
+        }));
+
         return {
-            [property_names.current]: currentAtom,
+            [property_names.current]: asyncCurrentAtom,
             [property_names.update]: updateAtom,
             [property_names.async_update]: asyncUpdateAtom,
+            [property_names.add]: addAtom,
+            [property_names.async_add]: asyncAddAtom,
         };
     };
 
@@ -93,10 +104,10 @@ export const { atomInstance: Status_Foreground, useHook: useStatus_Foreground } 
 
 
 
-export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
-    current: "currentSentMessageList",
-    update: "updateSentMessageList",
-    add: "addSentMessageList",
+export const { atomInstance: messageLogs, useHook: useMessageLogs } = createAtomWithHook(generateTestData(10), {
+    current: "currentMessageLogs",
+    update: "updateMessageLogs",
+    add: "addMessageLogs",
 });
 
 export const { atomInstance: isCompactMode, useHook: useIsCompactMode } = createAtomWithHook(false, {
