@@ -79,18 +79,22 @@ export const SwitchContainer = ({ switchLabel, switch_id, children, currentState
     });
 
     return (
-        <div
-            className={getClassNames(styles.switch_container)}
-            onClick={toggleFunction}
-        >
-            <p className={getClassNames(styles.switch_label)}>{switchLabel}</p>
-            {children}
+        <div className={getClassNames(styles.switch_container)} onClick={toggleFunction}>
+            <div className={styles.label_wrapper}>
+                <SvgComponent className={getClassNames(styles.switch_svg)} />
+                <p className={getClassNames(styles.switch_label)}>{switchLabel}</p>
+                {children}
+            </div>
+
+            <div className={getClassNames(styles.toggle_control)}>
+                <span className={getClassNames(styles.control)}></span>
+            </div>
+
             <div className={getClassNames(styles.switch_indicator)}></div>
             {(currentState.state === "loading")
                 ? <span className={styles.loader}></span>
                 : null
             }
-            <SvgComponent className={getClassNames(styles.switch_svg)} />
         </div>
     );
 };
