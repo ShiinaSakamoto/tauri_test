@@ -30,6 +30,12 @@
     font-size: 1.2rem;
     background-color: var(--dark_850_color);
     border-radius: 0.4rem;
+    &:hover {
+        background-color: var(--dark_825_color);
+    }
+    &:active {
+        background-color: var(--dark_900_color);
+    }
 }
 
 .message_send_icon {
