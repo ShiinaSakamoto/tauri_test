@@ -42,26 +42,9 @@ $default_loader_line_width: 0.2rem !default;
 
 
 
-
-/* toggle.scss */
-
-/* Follow me for more pens like this! */
-
-/*
-  Note: This demo could have easily been written in vanilla CSS.
-  The reason I opted into using SCSS, was just so that I could
-  enable easy customization for you, the viewer.
-
-  If you want to use this control in your own project as vanilla CSS;
-  customize the variables to whatever you'd like, and then click on the
-  down arrow button in the top right of this CSS editor and then select
-  "View Compiled CSS".
-*/
-
-// Tweak these to change the style of the toggle
 $toggle_background_color_on: var(--primary_400_color);
 $toggle_background_color_off: var(--dark_775_color);
-$toggle_control_color: white;
+$toggle_control_color: var(--dark_400_color);
 $toggle_width: 4rem;
 $toggle_height: 1.6rem;
 $toggle_gutter: 0.1rem;
@@ -69,8 +52,6 @@ $toggle_radius: 50%;
 $toggle_control_speed: .15s;
 $toggle_control_ease: ease-out;
 
-// These are our computed variables
-// change at your own risk.
 $toggle_radius: calc($toggle_height / 2);
 $toggle_control_size: $toggle_height - calc($toggle_gutter * 2);
 
@@ -88,7 +69,7 @@ $toggle_control_size: $toggle_height - calc($toggle_gutter * 2);
         width: $toggle_width;
         border-radius: $toggle_radius;
         background-color: $toggle_background_color_off;
-        transition: background-color $toggle_control_speed $toggle_control_ease;
+        // transition: background-color $toggle_control_speed $toggle_control_ease;
         &:after {
             content: "";
             position: absolute;
@@ -100,8 +81,20 @@ $toggle_control_size: $toggle_height - calc($toggle_gutter * 2);
             background: $toggle_control_color;
             transition: left $toggle_control_speed $toggle_control_ease;
         }
+        &.is_hovered {
+            background-color: var(--dark_725_color);
+        }
+        &.is_mouse_down {
+            background-color: var(--dark_825_color);
+        }
         &.is_active {
             background-color: $toggle_background_color_on;
+            &.is_hovered {
+                background-color: var(--primary_350_color);
+            }
+            &.is_mouse_down {
+                background-color: var(--primary_700_color);
+            }
             &:after {
                 left: $toggle_width - $toggle_control_size - $toggle_gutter;
             }

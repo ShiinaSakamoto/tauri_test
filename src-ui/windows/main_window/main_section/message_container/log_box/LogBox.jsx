@@ -9,7 +9,6 @@ export const LogBox = () => {
     const log_container_ref = useRef(null);
     const [is_scrolling, setIsScrolling] = useState(false);
 
-    console.log(is_scrolling);
     useLayoutEffect(() => {
         store.log_box_ref = log_container_ref;
         if (!is_scrolling) {
