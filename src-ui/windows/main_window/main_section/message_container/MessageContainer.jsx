@@ -6,7 +6,7 @@ import { LogBox } from "./log_box/LogBox";
 import { MessageInputBox } from "./message_input_box/MessageInputBox";
 
 export const MessageContainer = () => {
-    const { isDragging, position, separatorProps } = useResizable({
+    const { position } = useResizable({
         axis: "y",
         reverse: true
     });
@@ -14,11 +14,7 @@ export const MessageContainer = () => {
     return (
         <div className={styles.container}>
             <LogBox />
-            <Separator
-                dir={"horizontal"}
-                isDragging={isDragging}
-                {...separatorProps}
-            />
+            <Separator dir={"horizontal"} />
             <div className={styles.message_box_resize_wrapper} style={ { height: `${(position / 10) - 1.5 }rem` } }>
                 <MessageInputBox />
             </div>
