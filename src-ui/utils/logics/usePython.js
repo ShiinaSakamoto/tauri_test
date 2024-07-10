@@ -8,9 +8,9 @@ import {
 
 
 export const usePython = () => {
-    // const { updateStatus_Translation } = useStatus_Translation();
-    // const { updateStatus_TranscriptionSend } = useStatus_TranscriptionSend();
-    // const { updateStatus_TranscriptionReceive } = useStatus_TranscriptionReceive();
+    const { updateStatus_Translation } = useStatus_Translation();
+    const { updateStatus_TranscriptionSend } = useStatus_TranscriptionSend();
+    const { updateStatus_TranscriptionReceive } = useStatus_TranscriptionReceive();
     return {
         asyncPythonStartFunc: async () => {
             const command = Command.sidecar("bin/test");
@@ -24,21 +24,21 @@ export const usePython = () => {
                     parsed_data = line;
                 }
                 console.log("from python:", parsed_data);
-                // if (parsed_data.status === "ok") {
-                //     switch (parsed_data.id) {
-                //         case "translation":
-                //             updateStatus_Translation(parsed_data.data);
-                //             break;
-                //         case "transcription_send":
-                //             updateStatus_TranscriptionSend(parsed_data.data);
-                //             break;
-                //         case "transcription_receive":
-                //             updateStatus_TranscriptionReceive(parsed_data.data);
-                //             break;
-                //         default:
-                //             break;
-                //     }
-                // }
+                if (parsed_data.status === "ok") {
+                    switch (parsed_data.id) {
+                        case "translation":
+                            updateStatus_Translation(parsed_data.data);
+                            break;
+                        case "transcription_send":
+                            updateStatus_TranscriptionSend(parsed_data.data);
+                            break;
+                        case "transcription_receive":
+                            updateStatus_TranscriptionReceive(parsed_data.data);
+                            break;
+                        default:
+                            break;
+                    }
+                }
 
             });
             command.stderr.on("data", line => console.error("stderr:", line));

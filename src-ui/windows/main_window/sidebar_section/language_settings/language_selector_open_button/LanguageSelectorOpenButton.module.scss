@@ -9,6 +9,27 @@
     gap: 0.8rem;
 }
 
+.title_container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.category_svg {
+    position: absolute;
+    top: 50%;
+    left: 1.2rem;
+    transform: translate(-50%, -50%);
+    width: 1.4rem;
+    color: var(--dark_400_color);
+    display: none;
+    &.is_turned_on {
+        display: block;
+    }
+}
+
 .title {
     font-size: 1.6rem;
     color: var(--dark_400_color);
