@@ -9,6 +9,7 @@ import { translator_list, generateTestData } from "@data";
 export const store = {
     child: null,
     config_window: null,
+    log_box_ref: null,
 };
 
 const createAtomWithHook = (initialValue, property_names) => {
@@ -104,7 +105,7 @@ export const { atomInstance: Status_Foreground, useHook: useStatus_Foreground } 
 
 
 
-export const { atomInstance: messageLogs, useHook: useMessageLogs } = createAtomWithHook(generateTestData(10), {
+export const { atomInstance: messageLogs, useHook: useMessageLogs } = createAtomWithHook(generateTestData(20), {
     current: "currentMessageLogs",
     update: "updateMessageLogs",
     add: "addMessageLogs",
