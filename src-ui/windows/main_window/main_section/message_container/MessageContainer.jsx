@@ -6,7 +6,7 @@ import { LogBox } from "./log_box/LogBox";
 import { MessageInputBox } from "./message_input_box/MessageInputBox";
 
 export const MessageContainer = () => {
-    const { isDragging, position, separatorProps } = useResizable({
+    const { position } = useResizable({
         axis: "y",
         reverse: true
     });
@@ -14,11 +14,7 @@ export const MessageContainer = () => {
     return (
         <div className={styles.container}>
             <LogBox />
-            <Separator
-                dir={"horizontal"}
-                isDragging={isDragging}
-                {...separatorProps}
-            />
+            <Separator dir={"horizontal"} />
             <div className={styles.message_box_resize_wrapper} style={ { height: `${(position / 10) - 1.5 }rem` } }>
                 <MessageInputBox />
             </div>
@@ -26,28 +22,10 @@ export const MessageContainer = () => {
     );
 };
 
-const Separator = ({ id, dir, isDragging, ...props }) => {
-    // const [isFocused, setIsFocused] = useState(false)
-    // console.log(isDragging);
-
+const Separator = ({ ...props }) => {
     return (
-        <div
-            // id={id}
-            // data-testid={id}
-            tabIndex={0}
-            // className={cn(
-            //   'sample-drag-bar',
-            //   dir === 'horizontal' && 'sample-drag-bar--horizontal',
-            //   (isDragging || isFocused) && 'sample-drag-bar--dragging'
-            // )}
-            // onFocus={() => setIsFocused(true)}
-            // onBlur={() => setIsFocused(false)}
-            className={styles.separator}
-            {...props}
-        />
-    )
-
-
-    // console.log(separatorProps);
-    // return <div className={styles.separator} {...separatorProps }></div>;
+        <div tabIndex={0} className={styles.separator} {...props}>
+            <span className={styles.separator_line}></span>
+        </div>
+    );
 };

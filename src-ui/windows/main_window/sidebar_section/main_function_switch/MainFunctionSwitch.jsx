@@ -68,29 +68,50 @@ export const MainFunctionSwitch = () => {
     );
 };
 
+import { useState } from "react";
 
 export const SwitchContainer = ({ switchLabel, switch_id, children, currentState, toggleFunction, SvgComponent }) => {
+    const [is_hovered, setIsHovered] = useState(false);
+    const [is_mouse_down, setIsMouseDown] = useState(false);
+
     const { currentIsCompactMode } = useIsCompactMode();
 
     const getClassNames = (baseClass) => clsx(baseClass, {
         [styles.is_compact_mode]: currentIsCompactMode,
         [styles.is_active]: (currentState.data === true),
         [styles.is_loading]: (currentState.state === "loading"),
+        [styles.is_hovered]: is_hovered,
+        [styles.is_mouse_down]: is_mouse_down,
     });
 
+    const onMouseEnter = () => setIsHovered(true);
+    const onMouseLeave = () => setIsHovered(false);
+    const onMouseDown = () => setIsMouseDown(true);
+    const onMouseUp = () => setIsMouseDown(false);
+
     return (
-        <div
-            className={getClassNames(styles.switch_container)}
-            onClick={toggleFunction}
+        <div className={getClassNames(styles.switch_container)}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onClick={toggleFunction}
         >
-            <p className={getClassNames(styles.switch_label)}>{switchLabel}</p>
-            {children}
+            <div className={styles.label_wrapper}>
+                <SvgComponent className={getClassNames(styles.switch_svg)} />
+                <p className={getClassNames(styles.switch_label)}>{switchLabel}</p>
+                {children}
+            </div>
+
+            <div className={getClassNames(styles.toggle_control)}>
+                <span className={getClassNames(styles.control)}></span>
+            </div>
+
             <div className={getClassNames(styles.switch_indicator)}></div>
             {(currentState.state === "loading")
                 ? <span className={styles.loader}></span>
                 : null
             }
-            <SvgComponent className={getClassNames(styles.switch_svg)} />
         </div>
     );
 };

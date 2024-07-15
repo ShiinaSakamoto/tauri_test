@@ -1,17 +1,23 @@
 import { useState } from "react";
 import styles from "./MessageInputBox.module.scss";
-import { asyncSendMessage } from "@logic";
 import SendMessageSvg from "@images/send_message.svg?react";
-import { useSentMessageList } from "@store";
+import { useMessage } from "@logics/useMessage";
+import { store } from "@store";
+import { scrollToBottom } from "@logics/scrollToBottom";
+
 
 export const MessageInputBox = () => {
     const [inputValue, setInputValue] = useState("");
-    const { addSentMessageList } = useSentMessageList();
+    const { sendMessage } = useMessage();
 
     const onSubmitFunction = (e) => {
         e.preventDefault();
-        asyncSendMessage(inputValue);
-        addSentMessageList(inputValue);
+        sendMessage(inputValue);
+
+        setTimeout(() => {
+            scrollToBottom(store.log_box_ref);
+        }, 10);
+
     };
 
     const onChangeFunction = (e) => {

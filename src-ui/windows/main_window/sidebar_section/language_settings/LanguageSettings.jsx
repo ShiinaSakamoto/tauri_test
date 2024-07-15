@@ -22,12 +22,19 @@ export const LanguageSettings = () => {
 };
 
 
-
+import MicSvg from "@images/mic.svg?react";
+import HeadphonesSvg from "@images/headphones.svg?react";
 import { useIsOpenedLanguageSelector } from "@store";
+import { useMainFunction } from "@logics/useMainFunction";
 
 const PresetContainer = () => {
     const { t } = useTranslation();
     const { updateIsOpenedLanguageSelector, currentIsOpenedLanguageSelector } = useIsOpenedLanguageSelector();
+
+    const {
+        currentStatus_TranscriptionSend,
+        currentStatus_TranscriptionReceive,
+    } = useMainFunction();
 
 
     const closeLanguageSelector = () => {
@@ -67,17 +74,20 @@ const PresetContainer = () => {
         }
     };
 
-
     const your_language_settings = {
         title: t("main_window.your_language"),
         is_opened: currentIsOpenedLanguageSelector.your_language,
-        onClickFunction: () => handleLanguageSelectorClick("your_language")
+        onClickFunction: () => handleLanguageSelectorClick("your_language"),
+        TurnedOnSvgComponent: <MicSvg />,
+        is_turned_on: currentStatus_TranscriptionSend.data,
     };
 
     const target_language_settings = {
         title: t("main_window.target_language"),
         is_opened: currentIsOpenedLanguageSelector.target_language,
-        onClickFunction: () => handleLanguageSelectorClick("target_language")
+        onClickFunction: () => handleLanguageSelectorClick("target_language"),
+        TurnedOnSvgComponent: <HeadphonesSvg />,
+        is_turned_on: currentStatus_TranscriptionReceive.data,
     };
 
     return (

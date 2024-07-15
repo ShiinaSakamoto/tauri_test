@@ -7,6 +7,20 @@
     font-family: "Yu Gothic UI";
 }
 
+* {
+    &::-webkit-scrollbar {
+        width: 0.8rem;
+    }
+    &::-webkit-scrollbar-track {
+        background-color: var(--dark_925_color);
+        border-radius: 0.4rem;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--dark_800_color);
+        border-radius: 0.4rem;
+    }
+}
+
 html, body {
     height: 100%;
 }

@@ -1,6 +1,5 @@
 import sys
 import json
-import datetime
 import time
 
 def main():
@@ -11,7 +10,13 @@ def main():
         f.write(f"received_data: {received_data}\n")
 
     if received_data:
-        response = json.dumps({"test_key_from_py": received_data["test_key_from_js"]})
+        response_data = {
+            "status": "ok",
+            "id": received_data["id"],
+            "data": received_data["data"],
+        }
+        response = json.dumps(response_data)
+        time.sleep(2)
         print(response, flush=True)
 
 
@@ -27,7 +32,6 @@ def main():
 if __name__ == "__main__":
     try:
         print(json.dumps({"init_key_from_py": "Initialization from Python."}), flush=True)
-        # print("Initialization from Python.", flush=True)
         while True:
             main()
     except Exception:

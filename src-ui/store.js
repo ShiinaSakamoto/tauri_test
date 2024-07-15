@@ -4,11 +4,12 @@ import {
     useSetAtom
 } from "jotai";
 
-import { translator_list } from "@data";
+import { translator_list, generateTestData } from "@data";
 
 export const store = {
     child: null,
     config_window: null,
+    log_box_ref: null,
 };
 
 const createAtomWithHook = (initialValue, property_names) => {
@@ -45,18 +46,36 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
     const loadableAtom = loadable(asyncAtom);
 
     const useHook = () => {
-        const currentAtom = useAtomValue(loadableAtom);
+        const asyncCurrentAtom = useAtomValue(loadableAtom);
+        // const currentAtom = useAtomValue(atomInstance);
 
-        const setAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc, ...args) => {
-            set(atomInstance, payloadAsyncFunc(...args));
-        }));
-
-
-        const updateAtom = async (asyncFunction, ...args) => {
-            setAtom(asyncFunction, ...args);
+        const setAtom = useSetAtom(atomInstance);
+        const updateAtom = (value) => {
+            setAtom(value);
         };
 
-        return { [property_names.current]: currentAtom, [property_names.update]: updateAtom };
+        const asyncSetAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc, ...args) => {
+            set(atomInstance, payloadAsyncFunc(...args));
+        }));
+        const asyncUpdateAtom = async (asyncFunction, ...args) => {
+            asyncSetAtom(asyncFunction, ...args);
+        };
+
+        const addAtom = (value) => {
+            setAtom((old_value) => [...old_value, value]);
+        };
+        const asyncAddAtom = useSetAtom(atom(null, async (get, set, payloadAsyncFunc, ...args) => {
+            const ald_value = await get(atomInstance);
+            set(atomInstance, payloadAsyncFunc([...ald_value, ...args]));
+        }));
+
+        return {
+            [property_names.current]: asyncCurrentAtom,
+            [property_names.update]: updateAtom,
+            [property_names.async_update]: asyncUpdateAtom,
+            [property_names.add]: addAtom,
+            [property_names.async_add]: asyncAddAtom,
+        };
     };
 
     return { atomInstance, useHook };
@@ -66,26 +85,30 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
 export const { atomInstance: Status_Translation, useHook: useStatus_Translation } = createAsyncAtomWithHook(false, {
     current: "currentStatus_Translation",
     update: "updateStatus_Translation",
+    async_update: "asyncUpdateStatus_Translation",
 });
 export const { atomInstance: Status_TranscriptionSend, useHook: useStatus_TranscriptionSend } = createAsyncAtomWithHook(false, {
     current: "currentStatus_TranscriptionSend",
     update: "updateStatus_TranscriptionSend",
+    async_update: "asyncUpdateStatus_TranscriptionSend",
 });
 export const { atomInstance: Status_TranscriptionReceive, useHook: useStatus_TranscriptionReceive } = createAsyncAtomWithHook(false, {
     current: "currentStatus_TranscriptionReceive",
     update: "updateStatus_TranscriptionReceive",
+    async_update: "asyncUpdateStatus_TranscriptionReceive",
 });
 export const { atomInstance: Status_Foreground, useHook: useStatus_Foreground } = createAsyncAtomWithHook(false, {
     current: "currentStatus_Foreground",
     update: "updateStatus_Foreground",
+    async_update: "asyncUpdateStatus_Foreground",
 });
 
 
 
-export const { atomInstance: sentMessageList, useHook: useSentMessageList } = createAtomWithHook(["default"], {
-    current: "currentSentMessageList",
-    update: "updateSentMessageList",
-    add: "addSentMessageList",
+export const { atomInstance: messageLogs, useHook: useMessageLogs } = createAtomWithHook(generateTestData(20), {
+    current: "currentMessageLogs",
+    update: "updateMessageLogs",
+    add: "addMessageLogs",
 });
 
 export const { atomInstance: isCompactMode, useHook: useIsCompactMode } = createAtomWithHook(false, {
