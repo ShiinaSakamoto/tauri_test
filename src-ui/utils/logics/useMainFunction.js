@@ -1,3 +1,5 @@
+import { getCurrent } from "@tauri-apps/api/window";
+
 import {
     useState_Translation,
     useState_TranscriptionSend,
@@ -60,7 +62,11 @@ export const useMainFunction = () => {
         },
 
         toggleForeground: () => {
-            updateState_Foreground(!currentState_Foreground.data);
+            const main_window = getCurrent();
+            const is_foreground_enabled = !currentState_Foreground.data;
+            main_window.setAlwaysOnTop(is_foreground_enabled);
+            updateState_Foreground(is_foreground_enabled);
+
         },
         currentState_Foreground: currentState_Foreground,
     };

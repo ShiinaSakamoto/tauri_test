@@ -29,7 +29,6 @@ export const useWindow = () => {
             main_window.onCloseRequested((event) => {
                 config_window.close();
             });
-
         }
     };
 
