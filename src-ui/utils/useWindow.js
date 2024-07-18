@@ -7,7 +7,7 @@ export const useWindow = () => {
     const createConfigWindow = async () => {
         const main_window = getCurrent();
         if (store.config_window === null) {
-            const config_window = new WebviewWindow("theUniqueLabel",{
+            const config_window = new WebviewWindow("vrct_config_window",{
                 url: "./src-ui/windows/config_window/index.html",
                 center: true,
                 width: 1080,
