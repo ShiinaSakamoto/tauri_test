@@ -1,56 +1,68 @@
 import {
-    useStatus_Translation,
-    useStatus_TranscriptionSend,
-    useStatus_TranscriptionReceive,
-    useStatus_Foreground,
+    useState_Translation,
+    useState_TranscriptionSend,
+    useState_TranscriptionReceive,
+    useState_Foreground,
 } from "@store";
 
-import { usePython } from "./usePython";
+import { useStdoutToPython } from "./useStdoutToPython";
 
 export const useMainFunction = () => {
     const {
-        currentStatus_Translation,
-        asyncUpdateStatus_Translation,
-    } = useStatus_Translation();
+        currentState_Translation,
+        updateState_Translation,
+        asyncUpdateState_Translation,
+    } = useState_Translation();
     const {
-        currentStatus_TranscriptionSend,
-        asyncUpdateStatus_TranscriptionSend,
-    } = useStatus_TranscriptionSend();
+        currentState_TranscriptionSend,
+        updateState_TranscriptionSend,
+        asyncUpdateState_TranscriptionSend,
+    } = useState_TranscriptionSend();
     const {
-        currentStatus_TranscriptionReceive,
-        asyncUpdateStatus_TranscriptionReceive,
-    } = useStatus_TranscriptionReceive();
+        currentState_TranscriptionReceive,
+        updateState_TranscriptionReceive,
+        asyncUpdateState_TranscriptionReceive,
+    } = useState_TranscriptionReceive();
     const {
-        currentStatus_Foreground,
-        updateStatus_Foreground,
-    } = useStatus_Foreground();
+        currentState_Foreground,
+        updateState_Foreground,
+    } = useState_Foreground();
 
-    const { asyncSendMessage } = usePython();
+    const { asyncStdoutToPython } = useStdoutToPython();
 
     const asyncPending = () => new Promise(() => {});
     return {
         toggleTranslation: () => {
-            asyncSendMessage({id: "translation", data: !currentStatus_Translation.data});
-            asyncUpdateStatus_Translation(asyncPending);
+            asyncStdoutToPython({id: "/controller/callback_toggle_translation", data: !currentState_Translation.data});
+            asyncUpdateState_Translation(asyncPending);
         },
-        currentStatus_Translation: currentStatus_Translation,
+        currentState_Translation: currentState_Translation,
+        updateState_Translation: (payload) => {
+            updateState_Translation(payload.data);
+        },
 
         toggleTranscriptionSend: () => {
-            asyncSendMessage({id: "transcription_send", data: !currentStatus_TranscriptionSend.data});
-            asyncUpdateStatus_TranscriptionSend(asyncPending);
+            asyncStdoutToPython({id: "/controller/callback_toggle_transcription_send", data: !currentState_TranscriptionSend.data});
+            asyncUpdateState_TranscriptionSend(asyncPending);
         },
-        currentStatus_TranscriptionSend: currentStatus_TranscriptionSend,
+        currentState_TranscriptionSend: currentState_TranscriptionSend,
+        updateState_TranscriptionSend: (payload) => {
+            updateState_TranscriptionSend(payload.data);
+        },
 
         toggleTranscriptionReceive: () => {
-            asyncSendMessage({id: "transcription_receive", data: !currentStatus_TranscriptionReceive.data});
-            asyncUpdateStatus_TranscriptionReceive(asyncPending);
+            asyncStdoutToPython({id: "/controller/callback_toggle_transcription_receive", data: !currentState_TranscriptionReceive.data});
+            asyncUpdateState_TranscriptionReceive(asyncPending);
         },
-        currentStatus_TranscriptionReceive: currentStatus_TranscriptionReceive,
+        currentState_TranscriptionReceive: currentState_TranscriptionReceive,
+        updateState_TranscriptionReceive: (payload) => {
+            updateState_TranscriptionReceive(payload.data);
+        },
 
         toggleForeground: () => {
-            updateStatus_Foreground(!currentStatus_Foreground.data);
+            updateState_Foreground(!currentState_Foreground.data);
         },
-        currentStatus_Foreground: currentStatus_Foreground,
+        currentState_Foreground: currentState_Foreground,
     };
 };
 

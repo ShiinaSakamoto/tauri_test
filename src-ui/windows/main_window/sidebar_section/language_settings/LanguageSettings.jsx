@@ -32,8 +32,8 @@ const PresetContainer = () => {
     const { updateIsOpenedLanguageSelector, currentIsOpenedLanguageSelector } = useIsOpenedLanguageSelector();
 
     const {
-        currentStatus_TranscriptionSend,
-        currentStatus_TranscriptionReceive,
+        currentState_TranscriptionSend,
+        currentState_TranscriptionReceive,
     } = useMainFunction();
 
 
@@ -79,7 +79,7 @@ const PresetContainer = () => {
         is_opened: currentIsOpenedLanguageSelector.your_language,
         onClickFunction: () => handleLanguageSelectorClick("your_language"),
         TurnedOnSvgComponent: <MicSvg />,
-        is_turned_on: currentStatus_TranscriptionSend.data,
+        is_turned_on: currentState_TranscriptionSend.data,
     };
 
     const target_language_settings = {
@@ -87,7 +87,7 @@ const PresetContainer = () => {
         is_opened: currentIsOpenedLanguageSelector.target_language,
         onClickFunction: () => handleLanguageSelectorClick("target_language"),
         TurnedOnSvgComponent: <HeadphonesSvg />,
-        is_turned_on: currentStatus_TranscriptionReceive.data,
+        is_turned_on: currentState_TranscriptionReceive.data,
     };
 
     return (

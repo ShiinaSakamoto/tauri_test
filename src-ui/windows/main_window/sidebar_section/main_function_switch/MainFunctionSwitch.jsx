@@ -13,10 +13,10 @@ export const MainFunctionSwitch = () => {
     const { t } = useTranslation();
 
     const {
-        toggleTranslation, currentStatus_Translation,
-        toggleTranscriptionSend, currentStatus_TranscriptionSend,
-        toggleTranscriptionReceive, currentStatus_TranscriptionReceive,
-        toggleForeground, currentStatus_Foreground,
+        toggleTranslation, currentState_Translation,
+        toggleTranscriptionSend, currentState_TranscriptionSend,
+        toggleTranscriptionReceive, currentState_TranscriptionReceive,
+        toggleForeground, currentState_Foreground,
     } = useMainFunction();
 
 
@@ -25,28 +25,28 @@ export const MainFunctionSwitch = () => {
             switch_id: "translation",
             label: t("main_window.translation"),
             SvgComponent: TranslationSvg,
-            currentState: currentStatus_Translation,
+            currentState: currentState_Translation,
             toggleFunction: toggleTranslation,
         },
         {
             switch_id: "transcription_send",
             label: t("main_window.transcription_send"),
             SvgComponent: MicSvg,
-            currentState: currentStatus_TranscriptionSend,
+            currentState: currentState_TranscriptionSend,
             toggleFunction: toggleTranscriptionSend,
         },
         {
             switch_id: "transcription_receive",
             label: t("main_window.transcription_receive"),
             SvgComponent: HeadphonesSvg,
-            currentState: currentStatus_TranscriptionReceive,
+            currentState: currentState_TranscriptionReceive,
             toggleFunction: toggleTranscriptionReceive,
         },
         {
             switch_id: "foreground",
             label: t("main_window.foreground"),
             SvgComponent: ForegroundSvg,
-            currentState: currentStatus_Foreground,
+            currentState: currentState_Foreground,
             toggleFunction: toggleForeground,
         },
     ];

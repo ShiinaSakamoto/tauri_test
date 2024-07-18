@@ -2,15 +2,15 @@ import { useEffect, useRef } from "react";
 import styles from "./MainWindow.module.scss";
 import { SidebarSection } from "./sidebar_section/SidebarSection";
 import { MainSection } from "./main_section/MainSection";
-import { usePython } from "@logics/usePython";
+import { useStartPython } from "@logics/useStartPython";
 
 export const MainWindow = () => {
-    const { asyncPythonStartFunc } = usePython();
+    const { asyncStartPython } = useStartPython();
     const hasRunRef = useRef(false);
 
     useEffect(() => {
         if (!hasRunRef.current) {
-            asyncPythonStartFunc();
+            asyncStartPython();
         }
         return () => hasRunRef.current = true;
     }, []);
