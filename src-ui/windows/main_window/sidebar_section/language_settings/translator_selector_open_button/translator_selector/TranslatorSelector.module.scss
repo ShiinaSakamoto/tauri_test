@@ -38,6 +38,7 @@ $box_size: 6.8rem;
     white-space: pre-wrap;
     text-align: center;
     border-radius: 0.6rem;
+    cursor: pointer;
     &:hover {
         background-color: var(--dark_825_color);
     }
@@ -47,6 +48,7 @@ $box_size: 6.8rem;
     }
     &.is_selected {
         border: 0.2rem solid var(--primary_300_color);
+        cursor: pointer;
     }
     &:not(.is_available) {
         pointer-events: none;
