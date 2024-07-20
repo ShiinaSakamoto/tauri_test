@@ -21,6 +21,10 @@
     }
 }
 
+p {
+    user-select: none;
+}
+
 html, body {
     height: 100%;
 }
