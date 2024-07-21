@@ -21,7 +21,7 @@
     }
 }
 
-p {
+p, img {
     user-select: none;
 }
 
