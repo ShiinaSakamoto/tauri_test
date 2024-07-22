@@ -42,6 +42,7 @@
         "state_text_enabled": "Enabled",
         "state_text_disabled": "Disabled",
         "cover_message": "The functionality is temporarily disabled until the settings window is closed.",
+        "close_settings_window": "Close the settings window",
         "confirmation_message": {
             "update_software": "Download the new version and automatically restart the app.\nIt'll take a while. Do it now?",
             "deny_update_software": "Do it later",

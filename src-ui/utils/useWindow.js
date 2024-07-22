@@ -1,8 +1,9 @@
 import { WebviewWindow } from "@tauri-apps/api/window";
-import { store } from "@store";
+import { store, useIsOpenedConfigWindow } from "@store";
 import { getCurrent } from "@tauri-apps/api/window";
 
 export const useWindow = () => {
+    const { updateIsOpenedConfigWindow } = useIsOpenedConfigWindow();
 
     const createConfigWindow = async () => {
         const main_window = getCurrent();
@@ -16,14 +17,16 @@ export const useWindow = () => {
 
             config_window.once("tauri://created", function () {
                 store.config_window = config_window;
+                updateIsOpenedConfigWindow(true);
             });
             config_window.once("tauri://error", function (e) {
                 console.log(e);
             });
 
-            const unlisten_c = config_window.onCloseRequested((event) => {
+            const unlisten_d = config_window.once("tauri://destroyed", (event) => {
                 store.config_window = null;
-                unlisten_c();
+                updateIsOpenedConfigWindow(false);
+                unlisten_d();
             });
 
             main_window.onCloseRequested((event) => {
@@ -33,7 +36,6 @@ export const useWindow = () => {
     };
 
     const closeConfigWindow = () => {
-        console.log(store.config_window);
         store.config_window.close();
     };
 

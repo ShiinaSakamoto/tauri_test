@@ -129,6 +129,12 @@ export const { atomInstance: selectedTab, useHook: useSelectedTab } = createAtom
     update: "updateSelectedTab",
 });
 
+
+export const { atomInstance: isOpenedConfigWindow, useHook: useIsOpenedConfigWindow } = createAtomWithHook(false, {
+    current: "currentIsOpenedConfigWindow",
+    update: "updateIsOpenedConfigWindow",
+} );
+
 export const { atomInstance: selectedConfigTab, useHook: useSelectedConfigTab } = createAtomWithHook("appearance", {
     current: "currentSelectedConfigTab",
     update: "updateSelectedConfigTab",
