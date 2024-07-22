@@ -1,6 +1,8 @@
 import styles from "./SettingBox.module.scss";
-
 import { useSelectedConfigTab } from "@store";
+
+import { Appearance } from "./appearance/Appearance";
+
 export const SettingBox = () => {
     const { currentSelectedConfigTab } = useSelectedConfigTab();
     switch (currentSelectedConfigTab) {
@@ -9,30 +11,4 @@ export const SettingBox = () => {
         default:
             return null;
     }
-};
-
-import { useSettingBox } from "./useSettingBox";
-import { useSelectedMicDevice, useMicDeviceList } from "@store";
-const Appearance = () => {
-    const { currentSelectedMicDevice, updateSelectedMicDevice } = useSelectedMicDevice();
-    const { currentMicDeviceList } = useMicDeviceList();
-    const { DropdownMenuContainer } = useSettingBox();
-
-    const selectFunction = (selected_data) => {
-        const asyncFunction = () => {
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(selected_data.selected_id);
-                }, 3000);
-            });
-        };
-        updateSelectedMicDevice(asyncFunction);
-    };
-
-    return (
-        <>
-            <DropdownMenuContainer dropdown_id="mic_host" label="Mic Host/Driver" desc="description" selected_id="b" list={{a: "A", b: "B", c: "C"}} />
-            <DropdownMenuContainer dropdown_id="mic_device" label="Mic Device" desc="description" selected_id={currentSelectedMicDevice.data} list={currentMicDeviceList} selectFunction={selectFunction} state={currentSelectedMicDevice.state} />
-        </>
-    );
 };
