@@ -3,7 +3,7 @@ import styles from "./SidebarSection.module.scss";
 export const SidebarSection = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.tab_wrapper}>
+            <div className={styles.tabs_wrapper}>
                 <Tab tab_id="appearance" />
                 <Tab tab_id="translation" />
                 <Tab tab_id="transcription" />
@@ -11,7 +11,7 @@ export const SidebarSection = () => {
                 <Tab tab_id="others" />
                 <Tab tab_id="advanced_settings" />
             </div>
-            <div className={styles.separated_tab_wrapper}>
+            <div className={styles.separated_tabs_wrapper}>
                 <Tab tab_id="about_vrct" />
             </div>
         </div>
