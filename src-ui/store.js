@@ -81,6 +81,11 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
     return { atomInstance, useHook };
 };
 
+export const { atomInstance: uiLanguage, useHook: useUiLanguage } = createAtomWithHook("en", {
+    current: "currentUiLanguage",
+    update: "updateUiLanguage",
+});
+
 
 export const { atomInstance: State_Translation, useHook: useState_Translation } = createAsyncAtomWithHook(false, {
     current: "currentState_Translation",
@@ -172,4 +177,14 @@ export const { atomInstance: selectedTranslator, useHook: useSelectedTranslator 
 export const { atomInstance: openedTranslatorSelector, useHook: useOpenedTranslatorSelector } = createAtomWithHook(false, {
     current: "currentOpenedTranslatorSelector",
     update: "updateOpenedTranslatorSelector",
+});
+
+export const { atomInstance: vrctPosterIndex, useHook: useVrctPosterIndex } = createAtomWithHook(0, {
+    current: "currentVrctPosterIndex",
+    update: "updateVrctPosterIndex",
+});
+
+export const { atomInstance: posterShowcaseWorldPageIndex, useHook: usePosterShowcaseWorldPageIndex } = createAtomWithHook(0, {
+    current: "currentPosterShowcaseWorldPageIndex",
+    update: "updatePosterShowcaseWorldPageIndex",
 });

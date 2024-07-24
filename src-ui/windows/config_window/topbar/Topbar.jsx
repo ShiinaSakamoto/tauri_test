@@ -7,9 +7,11 @@ import { CompactSwitchBox } from "./compact_switch_box/CompactSwitchBox";
 export const Topbar = () => {
     return (
         <div className={styles.container}>
-            <TitleBox />
-            <SectionTitleBox />
-            <CompactSwitchBox />
+            <div className={styles.wrapper}>
+                <TitleBox />
+                <SectionTitleBox />
+                <CompactSwitchBox />
+            </div>
         </div>
     );
 };
