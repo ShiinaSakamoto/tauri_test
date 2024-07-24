@@ -7,7 +7,7 @@ import {
 import { translator_list, generateTestData } from "@data";
 
 export const store = {
-    child: null,
+    backend_subprocess: null,
     config_window: null,
     log_box_ref: null,
 };
@@ -81,26 +81,31 @@ const createAsyncAtomWithHook = (initialValue, property_names) => {
     return { atomInstance, useHook };
 };
 
+export const { atomInstance: uiLanguage, useHook: useUiLanguage } = createAtomWithHook("en", {
+    current: "currentUiLanguage",
+    update: "updateUiLanguage",
+});
 
-export const { atomInstance: Status_Translation, useHook: useStatus_Translation } = createAsyncAtomWithHook(false, {
-    current: "currentStatus_Translation",
-    update: "updateStatus_Translation",
-    async_update: "asyncUpdateStatus_Translation",
+
+export const { atomInstance: State_Translation, useHook: useState_Translation } = createAsyncAtomWithHook(false, {
+    current: "currentState_Translation",
+    update: "updateState_Translation",
+    async_update: "asyncUpdateState_Translation",
 });
-export const { atomInstance: Status_TranscriptionSend, useHook: useStatus_TranscriptionSend } = createAsyncAtomWithHook(false, {
-    current: "currentStatus_TranscriptionSend",
-    update: "updateStatus_TranscriptionSend",
-    async_update: "asyncUpdateStatus_TranscriptionSend",
+export const { atomInstance: State_TranscriptionSend, useHook: useState_TranscriptionSend } = createAsyncAtomWithHook(false, {
+    current: "currentState_TranscriptionSend",
+    update: "updateState_TranscriptionSend",
+    async_update: "asyncUpdateState_TranscriptionSend",
 });
-export const { atomInstance: Status_TranscriptionReceive, useHook: useStatus_TranscriptionReceive } = createAsyncAtomWithHook(false, {
-    current: "currentStatus_TranscriptionReceive",
-    update: "updateStatus_TranscriptionReceive",
-    async_update: "asyncUpdateStatus_TranscriptionReceive",
+export const { atomInstance: State_TranscriptionReceive, useHook: useState_TranscriptionReceive } = createAsyncAtomWithHook(false, {
+    current: "currentState_TranscriptionReceive",
+    update: "updateState_TranscriptionReceive",
+    async_update: "asyncUpdateState_TranscriptionReceive",
 });
-export const { atomInstance: Status_Foreground, useHook: useStatus_Foreground } = createAsyncAtomWithHook(false, {
-    current: "currentStatus_Foreground",
-    update: "updateStatus_Foreground",
-    async_update: "asyncUpdateStatus_Foreground",
+export const { atomInstance: State_Foreground, useHook: useState_Foreground } = createAsyncAtomWithHook(false, {
+    current: "currentState_Foreground",
+    update: "updateState_Foreground",
+    async_update: "asyncUpdateState_Foreground",
 });
 
 
@@ -128,6 +133,12 @@ export const { atomInstance: selectedTab, useHook: useSelectedTab } = createAtom
     current: "currentSelectedTab",
     update: "updateSelectedTab",
 });
+
+
+export const { atomInstance: isOpenedConfigWindow, useHook: useIsOpenedConfigWindow } = createAtomWithHook(false, {
+    current: "currentIsOpenedConfigWindow",
+    update: "updateIsOpenedConfigWindow",
+} );
 
 export const { atomInstance: selectedConfigTab, useHook: useSelectedConfigTab } = createAtomWithHook("appearance", {
     current: "currentSelectedConfigTab",
@@ -166,4 +177,14 @@ export const { atomInstance: selectedTranslator, useHook: useSelectedTranslator 
 export const { atomInstance: openedTranslatorSelector, useHook: useOpenedTranslatorSelector } = createAtomWithHook(false, {
     current: "currentOpenedTranslatorSelector",
     update: "updateOpenedTranslatorSelector",
+});
+
+export const { atomInstance: vrctPosterIndex, useHook: useVrctPosterIndex } = createAtomWithHook(0, {
+    current: "currentVrctPosterIndex",
+    update: "updateVrctPosterIndex",
+});
+
+export const { atomInstance: posterShowcaseWorldPageIndex, useHook: usePosterShowcaseWorldPageIndex } = createAtomWithHook(0, {
+    current: "currentPosterShowcaseWorldPageIndex",
+    update: "updatePosterShowcaseWorldPageIndex",
 });

@@ -7,7 +7,14 @@ export const RightSideComponents = () => {
         <div className={styles.container}>
             <p>VRC mic mute sync</p>
             <p>Overlay(VR)</p>
-            <HelpSvg className={styles.help_svg} />
+            <a
+            className={styles.help_and_info_button}
+            href="https://mzsoftware.notion.site/VRCT-Documents-be79b7a165f64442ad8f326d86c22246"
+            target="_blank"
+            rel="noreferrer"
+            >
+                <HelpSvg className={styles.help_svg} />
+            </a>
         </div>
     );
 };

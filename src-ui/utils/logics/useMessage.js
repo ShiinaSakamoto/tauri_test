@@ -2,15 +2,15 @@ import {
     useMessageLogs,
 } from "@store";
 
-import { usePython } from "./usePython";
+import { useStdoutToPython } from "./useStdoutToPython";
 
 export const useMessage = () => {
     const { currentMessageLogs, addMessageLogs, updateMessageLogs } = useMessageLogs();
-    const { asyncSendMessage } = usePython();
+    const { asyncStdoutToPython } = useStdoutToPython();
 
     return {
         sendMessage: (message) => {
-            asyncSendMessage({id: "send_message", data: message});
+            asyncStdoutToPython({id: "send_message", data: message});
             const uuid = crypto.randomUUID();
             const date = new Date().toLocaleTimeString(
                 "ja-JP",

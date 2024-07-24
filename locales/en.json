@@ -42,6 +42,7 @@
         "state_text_enabled": "Enabled",
         "state_text_disabled": "Disabled",
         "cover_message": "The functionality is temporarily disabled until the settings window is closed.",
+        "close_settings_window": "Close the settings window",
         "confirmation_message": {
             "update_software": "Download the new version and automatically restart the app.\nIt'll take a while. Do it now?",
             "deny_update_software": "Do it later",
@@ -90,7 +91,8 @@
             "others_send_message_formats": "Message Formats (Send)",
             "others_received_message_formats": "Message Formats (XSOverlay & Speaker2Chatbox)",
             "others_speaker2chatbox": "Speaker2Chatbox",
-            "advanced_settings": "Advanced Settings"
+            "advanced_settings": "Advanced Settings",
+            "about_vrct": "About VRCT"
         },
         "transparency": {
             "label": "Transparency",

@@ -14,7 +14,8 @@
       "all": false,
       "window": {
         "create": true,
-        "close": true
+        "close": true,
+        "setAlwaysOnTop": true
       },
       "shell": {
         "all": false,

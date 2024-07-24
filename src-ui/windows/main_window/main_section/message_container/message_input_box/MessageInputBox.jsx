@@ -42,4 +42,4 @@ export const MessageInputBox = () => {
             </button>
         </div>
     );
-};;
+};

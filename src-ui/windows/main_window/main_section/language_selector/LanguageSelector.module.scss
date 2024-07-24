@@ -12,7 +12,7 @@
 .language_list_scroll_wrapper {
     height: 100%;
     overflow-y: auto;
-    padding-bottom: 8rem;
+    padding: 1.4rem 1rem 8rem 1rem;
 }
 
 .language_list {
@@ -35,6 +35,7 @@
 
 .language_button {
     padding: 0.8rem 0.6rem;
+    cursor: pointer;
     &:hover{
         background-color: var(--dark_825_color);
     }
